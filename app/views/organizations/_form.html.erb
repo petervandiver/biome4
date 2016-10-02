@@ -1,0 +1,49 @@
+<%= form_for(@organization) do |f| %>
+  <% if @organization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul>
+      <% @organization.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p>
+    <%= f.text_field :name, placeholder: "Organization's Name" %>
+  </p>
+
+<p>
+  <%= f.text_field :description, placeholder: "What does your organization do?" %>
+</p>
+
+<p>
+    <%= f.text_field :fed_tax_id, placeholder: "(EIN) Employer Identification Number" %>
+  </p>
+
+<p>
+    <%= f.text_field :hq_zip, placeholder: "Zip Code" %>
+  </p>
+
+
+  
+
+  <p>What field of work?
+    <%= f.collection_select :field_id, Field.all, :id, :name %>
+  </p>
+
+  <p>Revenue per year?
+    <%= f.collection_select :annual_rev_id, AnnualRev.all, :id, :range %>
+  </p>
+  
+<p>How many employees?
+    <%= f.collection_select :org_size_id, OrgSize.all, :id, :range %>
+  </p>
+
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
