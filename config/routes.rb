@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  
+  resources :scopes
   devise_for :org_admins, controllers: { registrations: "registrations" }
   
   resources :organizations
+  resources :projects, only: [:show, :index, :new, :edit, :create, :destroy, :update] do
+      resources :scopes
+  end
+  
+  
 
   get 'home/index'
 

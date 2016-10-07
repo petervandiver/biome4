@@ -1,0 +1,61 @@
+<%= form_for(@scope) do |f| %>
+  <% if @scope.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@scope.errors.count, "error") %> prohibited this scope from being saved:</h2>
+
+      <ul>
+      <% @scope.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :project_id, :value => @project_id %>
+
+  <%= f.hidden_field :owner_id, :value => current_org_admin.organization.id %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :visible_to_public %><br>
+    <%= f.check_box :visible_to_public %>
+  </div>
+   
+  <p>
+    <%= f.collection_select :contributor_id, @other_organizations, :id, :name %>
+  </p>
+
+   <p>
+    <%= f.collection_select :csi_division_id, CsiDivision.all, :id, :code %>
+  </p>
+
+  <p>
+    <%= f.collection_select :billing_period_id, BillingPeriod.all, :id, :name %>
+  </p>
+
+
+  <div class="field">
+    <%= f.label :sov_used %><br>
+    <%= f.check_box :sov_used %>
+  </div>
+  <div class="field">
+    <%= f.label :stored_materials_used %><br>
+    <%= f.check_box :stored_materials_used %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label :send_invite_to %><br>
+    <%= f.text_field :send_invite_to %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

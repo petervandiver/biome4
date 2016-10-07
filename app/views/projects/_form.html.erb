@@ -1,0 +1,64 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :organization_id, :value => current_org_admin.organization.id %>
+
+  
+
+  <p>
+  <%= f.text_field :name, placeholder: "Project Name" %>
+</p>
+
+<p>
+  <%= f.text_field :project_number, placeholder: "Project Number" %>
+</p>
+
+<p>
+  <%= f.text_area :description, placeholder: "Project Description" %>
+</p>
+
+<p>
+  <%= f.text_field :estimated_spend, placeholder: "Estimated spend $" %>
+</p>
+
+
+<p>
+  <%= f.text_field :square_feet, placeholder: "Total Square Feet" %>
+</p>
+
+  <p>What type of Building?
+    <%= f.collection_select :building_type_id, BuildingType.all, :id, :name %>
+  </p>
+
+
+<p>Start date
+  <%= f.date_select :start_date, placeholder: "Start Date" %>
+</p>  
+
+<p>Estimated end date
+  <%= f.date_select :end_date, placeholder: "Estimated End Date" %>
+</p>
+
+<p>
+  <%= f.text_field :project_address, placeholder: "Project Street Address" %>
+</p>
+
+<p>
+  <%= f.text_field :project_address_zip, placeholder: "Project Address Zip Code" %>
+</p>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

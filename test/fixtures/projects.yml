@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  organization_id: 1
+  project_number: MyString
+  estimated_spend: MyString
+  square_feet: MyString
+  building_type_id: 1
+  start_date: 2016-10-03
+  end_date: 2016-10-03
+  project_address: MyString
+  project_address_zip: MyString
+
+two:
+  name: MyString
+  description: MyText
+  organization_id: 1
+  project_number: MyString
+  estimated_spend: MyString
+  square_feet: MyString
+  building_type_id: 1
+  start_date: 2016-10-03
+  end_date: 2016-10-03
+  project_address: MyString
+  project_address_zip: MyString

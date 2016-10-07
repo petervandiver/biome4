@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @scope.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @scope.description %>
+</p>
+
+<p>
+  <strong>Visible to public:</strong>
+  <%= @scope.visible_to_public %>
+</p>
+
+<p>
+  <strong>Csi division:</strong>
+  <%= @scope.csi_division_id %>
+</p>
+
+<p>
+  <strong>Billing period:</strong>
+  <%= @scope.billing_period_id %>
+</p>
+
+<p>
+  <strong>Sov used:</strong>
+  <%= @scope.sov_used %>
+</p>
+
+<p>
+  <strong>Stored materials used:</strong>
+  <%= @scope.stored_materials_used %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @scope.owner_id %>
+</p>
+
+<p>
+  <strong>Contributor:</strong>
+  <%= @scope.contributor_id %>
+</p>
+
+<p>
+  <strong>Send invite to:</strong>
+  <%= @scope.send_invite_to %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @scope.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_scope_path(@scope) %> |
+<%= link_to 'Back', scopes_path %>

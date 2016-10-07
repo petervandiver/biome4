@@ -11,13 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002205538) do
+ActiveRecord::Schema.define(version: 20161007182604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "annual_revs", force: :cascade do |t|
     t.string   "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "billing_periods", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "building_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "csi_divisions", force: :cascade do |t|
+    t.string   "code"
+    t.string   "title"
+    t.string   "code_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,6 +84,38 @@ ActiveRecord::Schema.define(version: 20161002205538) do
     t.integer  "org_size_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "organization_id"
+    t.string   "project_number"
+    t.string   "estimated_spend"
+    t.string   "square_feet"
+    t.integer  "building_type_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "project_address"
+    t.string   "project_address_zip"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "scopes", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "visible_to_public"
+    t.integer  "csi_division_id"
+    t.integer  "billing_period_id"
+    t.boolean  "sov_used"
+    t.boolean  "stored_materials_used"
+    t.integer  "owner_id"
+    t.integer  "contributor_id"
+    t.string   "send_invite_to"
+    t.integer  "project_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
 end

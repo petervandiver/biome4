@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  visible_to_public: false
+  csi_division_id: 1
+  billing_period_id: 1
+  sov_used: false
+  stored_materials_used: false
+  owner_id: 1
+  contributor_id: 1
+  send_invite_to: MyString
+  project_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  visible_to_public: false
+  csi_division_id: 1
+  billing_period_id: 1
+  sov_used: false
+  stored_materials_used: false
+  owner_id: 1
+  contributor_id: 1
+  send_invite_to: MyString
+  project_id: 1

@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Scopes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Visible to public</th>
+      <th>Csi division</th>
+      <th>Billing period</th>
+      <th>Sov used</th>
+      <th>Stored materials used</th>
+      <th>Owner</th>
+      <th>Contributor</th>
+      <th>Send invite to</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scopes.each do |scope| %>
+      <tr>
+        <td><%= scope.name %></td>
+        <td><%= scope.description %></td>
+        <td><%= scope.visible_to_public %></td>
+        <td><%= scope.csi_division_id %></td>
+        <td><%= scope.billing_period_id %></td>
+        <td><%= scope.sov_used %></td>
+        <td><%= scope.stored_materials_used %></td>
+        <td><%= scope.owner_id %></td>
+        <td><%= scope.contributor_id %></td>
+        <td><%= scope.send_invite_to %></td>
+        <td><%= scope.project_id %></td>
+        <td><%= link_to 'Show', scope %></td>
+        <td><%= link_to 'Edit', edit_scope_path(scope) %></td>
+        <td><%= link_to 'Destroy', scope, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scope', new_scope_path %>
