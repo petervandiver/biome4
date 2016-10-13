@@ -1,3 +1,8 @@
+
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Scopes</h1>
@@ -34,7 +39,7 @@
         <td><%= scope.contributor_id %></td>
         <td><%= scope.send_invite_to %></td>
         <td><%= scope.project_id %></td>
-        <td><%= link_to 'Show', scope %></td>
+        <td><%= link_to 'Show', scope_path(scope) %></td>
         <td><%= link_to 'Edit', edit_scope_path(scope) %></td>
         <td><%= link_to 'Destroy', scope, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -42,6 +47,4 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Scope', new_scope_path %>

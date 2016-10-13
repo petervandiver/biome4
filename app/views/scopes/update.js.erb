@@ -1,0 +1,6 @@
+$('form').hide();
+var update_element = document.getElementById("<%= j@scope.id.to_s %>");
+$('tbody').prepend('<%= j(render @scope) %>');
+//update_element.parentNode.parentNode.replaceWith('<%= j(render @scope) %>');
+$('#edit-scope-header').hide();
+$('#new-scope-link').show();

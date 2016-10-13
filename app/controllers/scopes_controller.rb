@@ -2,10 +2,18 @@ class ScopesController < ApplicationController
   before_action :authenticate_org_admin!
   before_action :set_scope, only: [:show, :edit, :update, :destroy]
 
+  respond_to :html
+  respond_to :js
+
   # GET /scopes
   # GET /scopes.json
   def index
     @scopes = Scope.all
+    #@scopes = Scope.where("project_id = ?", params[:project_id]) 
+    @organizations = Organization.all
+    @other_organizations = Organization.where('id != ?', current_org_admin.organization.id) 
+    @csi_divisions = CsiDivision.all
+    @billing_periods = BillingPeriod.all
   end
 
   # GET /scopes/1
@@ -13,9 +21,23 @@ class ScopesController < ApplicationController
   def show
   end
 
+  def project_scopes
+    @project = Project.find(params[:project_id])
+    @scopes = Scope.where("project_id = ?", params[:project_id]) 
+    @organizations = Organization.all
+    @other_organizations = Organization.where('id != ?', current_org_admin.organization.id) 
+    @csi_divisions = CsiDivision.all
+    @billing_periods = BillingPeriod.all
+  end
+
+  def contributing_scopes
+
+  end
+
   # GET /scopes/new
   def new
     @scope = Scope.new
+    @project = Project.find(params[:project_id])
     @other_organizations = Organization.where('id != ?', current_org_admin.organization.id)
     @billing_periods = BillingPeriod.all
     @csi_divisions = CsiDivision.all
@@ -23,6 +45,7 @@ class ScopesController < ApplicationController
 
   # GET /scopes/1/edit
   def edit
+     @project = Project.find(params[:project_id])
     @other_organizations = Organization.where('id != ?', current_org_admin.organization.id)
     @billing_periods = BillingPeriod.all
     @csi_divisions = CsiDivision.all
@@ -32,12 +55,14 @@ class ScopesController < ApplicationController
   # POST /scopes.json
   def create
     @scope = Scope.new(scope_params)
-
+    @project = @scope.project
     respond_to do |format|
       if @scope.save
-        format.html { redirect_to @scope, notice: 'Scope was successfully created.' }
+        format.js
+        format.html 
         format.json { render :show, status: :created, location: @scope }
       else
+        format.js
         format.html { render :new }
         format.json { render json: @scope.errors, status: :unprocessable_entity }
       end
@@ -47,11 +72,14 @@ class ScopesController < ApplicationController
   # PATCH/PUT /scopes/1
   # PATCH/PUT /scopes/1.json
   def update
+    @project = @scope.project
     respond_to do |format|
       if @scope.update(scope_params)
-        format.html { redirect_to @scope, notice: 'Scope was successfully updated.' }
+        format.js
+        format.html 
         format.json { render :show, status: :ok, location: @scope }
       else
+        format.js
         format.html { render :edit }
         format.json { render json: @scope.errors, status: :unprocessable_entity }
       end
@@ -61,11 +89,11 @@ class ScopesController < ApplicationController
   # DELETE /scopes/1
   # DELETE /scopes/1.json
   def destroy
+    @scope = Scope.find(params[:id])
     @scope.destroy
-    respond_to do |format|
-      format.html { redirect_to scopes_url, notice: 'Scope was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      respond_to do |format|
+       format.js 
+      end
   end
 
   private

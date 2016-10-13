@@ -1,0 +1,32 @@
+
+<%= render 'projects/project' %>
+
+<%= link_to 'Create Scope', new_scope_path(:project_id => @project.id), remote: true, id: 'new-scope-link' %>
+
+<h4>Current scopes for this project</h4>
+<br />
+
+
+<table class="table table-striped table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Visible to public</th>
+      <th>Csi division</th>
+      <th>Billing period</th>
+      <th>Sov used</th>
+      <th>Stored materials used</th>
+      <th>Assigned to</th>
+      <th>Send invite to</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   	<%= render @scopes %>
+  </tbody>
+</table>
+
+<br>
+

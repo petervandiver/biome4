@@ -12,6 +12,16 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = Project.find(params[:id])
+    @scopes = Scope.where("project_id = ?", params[:id]) 
+    @organizations = Organization.all
+    @other_organizations = Organization.where('id != ?', current_org_admin.organization.id) 
+    @csi_divisions = CsiDivision.all
+    @billing_periods = BillingPeriod.all
+  end
+
+  def project
+
   end
 
   # GET /projects/new

@@ -1,0 +1,9 @@
+var oldForm = $('new-scope-form');
+<% if @scope.errors.any? %>
+  oldForm.html('<%= j( render 'form' ) %>');
+<% else %>
+  $('#new-scope-header').hide();
+  $('form').remove();
+  $('tbody').prepend('<%= j(render @scope) %>');
+  $('#new-scope-link').show();
+<% end %>

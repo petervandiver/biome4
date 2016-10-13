@@ -1,0 +1,6 @@
+$('form').hide();
+var edit_element = document.getElementById("<%= j@scope.id.to_s %>");
+edit_element.parentNode.parentNode.remove();
+var edit_form = $('<%= j render('edit') %>');
+$('#new-scope-link').after(edit_form);
+$('#new-scope-link').hide();
