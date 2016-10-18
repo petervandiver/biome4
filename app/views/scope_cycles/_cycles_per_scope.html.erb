@@ -1,0 +1,31 @@
+
+
+<%= link_to 'Create new cycle', new_scope_cycle_path %>
+
+<% @scope_cycles.each do |scope_cycle| %>
+  	<div id= '<% scope_cycle.id %>' style='display:inline'  >    
+        <li><%= scope_cycle.billing_period_id %></li>
+        <li><%= scope_cycle.scope_id %></li>
+        <li><%= scope_cycle.contributor_id %></li>
+        <li><%= scope_cycle.owner_id %></li>
+        <li><%= scope_cycle.cycle_start_date %></li>
+        <li><%= scope_cycle.cycle_end_date %></li>
+        <li><%= scope_cycle.owner_approved %></li>
+        <li><%= scope_cycle.contributor_approved %></li>
+        <li><%= scope_cycle.cycle_suspended %></li>
+        <li><%= scope_cycle.cycle_cancelled %></li>
+        <li><%= scope_cycle.original_contract_amt %></li>
+        <li><%= scope_cycle.completed_to_date_total %></li>
+        <li><%= scope_cycle.stored_materials_total %></li>
+        <li><%= scope_cycle.retainage %></li>
+        <li><%= scope_cycle.less_owner_purchases %></li>
+        <li><%= scope_cycle.less_previous_pay_request %></li>
+        <li><%= scope_cycle.amount_due %></li>
+        <li><%= link_to 'Show', scope_cycle %></li>
+        <li><%= link_to 'Edit', edit_scope_cycle_path(scope_cycle) %></li>
+        <li><%= link_to 'Destroy', scope_cycle, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+     </div>
+    <% end %>
+  
+
+

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @stored_material.description %>
+</p>
+
+<p>
+  <strong>Scope cycle:</strong>
+  <%= @stored_material.scope_cycle_id %>
+</p>
+
+<p>
+  <strong>Stored at cycle start:</strong>
+  <%= @stored_material.stored_at_cycle_start %>
+</p>
+
+<p>
+  <strong>Received this cycle:</strong>
+  <%= @stored_material.received_this_cycle %>
+</p>
+
+<p>
+  <strong>Installed this cycle:</strong>
+  <%= @stored_material.installed_this_cycle %>
+</p>
+
+<p>
+  <strong>Stored at cycle end:</strong>
+  <%= @stored_material.stored_at_cycle_end %>
+</p>
+
+<%= link_to 'Edit', edit_stored_material_path(@stored_material) %> |
+<%= link_to 'Back', stored_materials_path %>

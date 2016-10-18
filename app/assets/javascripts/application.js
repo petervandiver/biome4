@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require wice_grid
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+
+$(document).on("click","#toggleSov",function(){
+  $(#cycle-jobs-partial).show();
+});

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @document.name %>
+</p>
+
+<p>
+  <strong>Scope cycle:</strong>
+  <%= @document.scope_cycle_id %>
+</p>
+
+<p>
+  <strong>file name</strong>
+  <%= @document.doc.file.filename %>
+</p>
+
+<%= link_to "Download File", @document.doc.url %>
+
+

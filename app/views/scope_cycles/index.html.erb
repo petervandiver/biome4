@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Scope Cycles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Billing period</th>
+      <th>Scope</th>
+      <th>Contributor</th>
+      <th>Owner</th>
+      <th>Cycle start date</th>
+      <th>Cycle end date</th>
+      <th>Owner approved</th>
+      <th>Contributor approved</th>
+      <th>Cycle suspended</th>
+      <th>Cycle cancelled</th>
+      <th>Original contract amt</th>
+      <th>Completed to date total</th>
+      <th>Stored materials total</th>
+      <th>Retainage</th>
+      <th>Less owner purchases</th>
+      <th>Less previous pay request</th>
+      <th>Amount due</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scope_cycles.each do |scope_cycle| %>
+      <tr>
+        <td><%= scope_cycle.billing_period_id %></td>
+        <td><%= scope_cycle.scope_id %></td>
+        <td><%= scope_cycle.contributor_id %></td>
+        <td><%= scope_cycle.owner_id %></td>
+        <td><%= scope_cycle.cycle_start_date %></td>
+        <td><%= scope_cycle.cycle_end_date %></td>
+        <td><%= scope_cycle.owner_approved %></td>
+        <td><%= scope_cycle.contributor_approved %></td>
+        <td><%= scope_cycle.cycle_suspended %></td>
+        <td><%= scope_cycle.cycle_cancelled %></td>
+        <td><%= scope_cycle.original_contract_amt %></td>
+        <td><%= scope_cycle.completed_to_date_total %></td>
+        <td><%= scope_cycle.stored_materials_total %></td>
+        <td><%= scope_cycle.retainage %></td>
+        <td><%= scope_cycle.less_owner_purchases %></td>
+        <td><%= scope_cycle.less_previous_pay_request %></td>
+        <td><%= scope_cycle.amount_due %></td>
+        <td><%= link_to 'Show', scope_cycle %></td>
+        <td><%= link_to 'Edit', edit_scope_cycle_path(scope_cycle) %></td>
+        <td><%= link_to 'Destroy', scope_cycle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scope cycle', new_scope_cycle_path %>

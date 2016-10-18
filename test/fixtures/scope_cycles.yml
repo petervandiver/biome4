@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  billing_period_id: 1
+  scope_id: 1
+  contributor_id: 1
+  owner_id: 1
+  cycle_start_date: 2016-10-13
+  cycle_end_date: 2016-10-13
+  owner_approved: false
+  contributor_approved: false
+  cycle_suspended: false
+  cycle_cancelled: false
+  original_contract_amt: 9.99
+  completed_to_date_total: 9.99
+  stored_materials_total: 9.99
+  retainage: 9.99
+  less_owner_purchases: 9.99
+  less_previous_pay_request: 9.99
+  amount_due: 9.99
+
+two:
+  billing_period_id: 1
+  scope_id: 1
+  contributor_id: 1
+  owner_id: 1
+  cycle_start_date: 2016-10-13
+  cycle_end_date: 2016-10-13
+  owner_approved: false
+  contributor_approved: false
+  cycle_suspended: false
+  cycle_cancelled: false
+  original_contract_amt: 9.99
+  completed_to_date_total: 9.99
+  stored_materials_total: 9.99
+  retainage: 9.99
+  less_owner_purchases: 9.99
+  less_previous_pay_request: 9.99
+  amount_due: 9.99

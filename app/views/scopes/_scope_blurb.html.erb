@@ -1,0 +1,17 @@
+<div id='scope-blurb' class="well well-sm">
+
+  	<h5>Scope: <%= @scope.name %></h5>
+
+    <p>Assigned to: <%= @scope.contributor.name %></p>
+
+    <p>Contact email: <%= @scope.send_invite_to %></p>
+
+    <p>CSI division: <%= @scope.csi_division.code_title %></p>
+
+    <p>Billing period: <%= @scope.billing_period.name %></p>
+
+    <p>Visible to public? <%= @scope.visible_to_public %></p>
+
+    <p>Description: <%= @scope.description %></p> 
+
+</div>

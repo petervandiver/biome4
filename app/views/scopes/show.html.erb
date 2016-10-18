@@ -4,7 +4,7 @@
   <strong>Name:</strong>
   <%= @scope.name %>
 </p>
-
+<%= link_to 'Edit', edit_scope_path(@scope) %> 
 <p>
   <strong>Description:</strong>
   <%= @scope.description %>
@@ -55,5 +55,5 @@
   <%= @scope.project_id %>
 </p>
 
-<%= link_to 'Edit', edit_scope_path(@scope) %> |
-<%= link_to 'Back', scopes_path %>
+
+

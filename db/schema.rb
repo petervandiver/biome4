@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007182604) do
+ActiveRecord::Schema.define(version: 20161016203254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,30 @@ ActiveRecord::Schema.define(version: 20161007182604) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "scope_cycle_id"
+    t.string   "doc"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "fields", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.text     "description"
+    t.decimal  "value"
+    t.decimal  "previous_complete"
+    t.decimal  "this_application"
+    t.string   "completed_to_date_percent"
+    t.decimal  "completed_to_date_value"
+    t.integer  "scope_cycle_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "org_admins", force: :cascade do |t|
@@ -102,6 +122,28 @@ ActiveRecord::Schema.define(version: 20161007182604) do
     t.datetime "updated_at",          null: false
   end
 
+  create_table "scope_cycles", force: :cascade do |t|
+    t.integer  "billing_period_id"
+    t.integer  "scope_id"
+    t.integer  "contributor_id"
+    t.integer  "owner_id"
+    t.date     "cycle_start_date"
+    t.date     "cycle_end_date"
+    t.boolean  "owner_approved"
+    t.boolean  "contributor_approved"
+    t.boolean  "cycle_suspended"
+    t.boolean  "cycle_cancelled"
+    t.decimal  "original_contract_amt"
+    t.decimal  "completed_to_date_total"
+    t.decimal  "stored_materials_total"
+    t.decimal  "retainage"
+    t.decimal  "less_owner_purchases"
+    t.decimal  "less_previous_pay_request"
+    t.decimal  "amount_due"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "scopes", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -114,6 +156,17 @@ ActiveRecord::Schema.define(version: 20161007182604) do
     t.integer  "contributor_id"
     t.string   "send_invite_to"
     t.integer  "project_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "stored_materials", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "scope_cycle_id"
+    t.decimal  "stored_at_cycle_start"
+    t.decimal  "received_this_cycle"
+    t.integer  "installed_this_cycle"
+    t.decimal  "stored_at_cycle_end"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end

@@ -1,0 +1,1 @@
+json.array! @stored_materials, partial: 'stored_materials/stored_material', as: :stored_material

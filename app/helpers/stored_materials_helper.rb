@@ -1,0 +1,2 @@
+module StoredMaterialsHelper
+end

@@ -1,0 +1,2 @@
+json.extract! scope_cycle, :id, :billing_period_id, :scope_id, :contributor_id, :owner_id, :cycle_start_date, :cycle_end_date, :owner_approved, :contributor_approved, :cycle_suspended, :cycle_cancelled, :original_contract_amt, :completed_to_date_total, :stored_materials_total, :retainage, :less_owner_purchases, :less_previous_pay_request, :amount_due, :created_at, :updated_at
+json.url scope_cycle_url(scope_cycle, format: :json)

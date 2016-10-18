@@ -1,0 +1,2 @@
+json.extract! stored_material, :id, :description, :scope_cycle_id, :stored_at_cycle_start, :received_this_cycle, :installed_this_cycle, :stored_at_cycle_end, :created_at, :updated_at
+json.url stored_material_url(stored_material, format: :json)

@@ -1,24 +1,25 @@
 Rails.application.routes.draw do
-  
-
+   
+  resources :documents
   devise_for :org_admins, controllers: { registrations: "registrations" }
   
-
-
-
+  resources :stored_materials
+  resources :jobs
   resources :organizations
   resources :projects
   resources :scopes do
     collection do
-                    get 'project_scopes', :to => 'scopes#project_scopes'
-                    get 'contributing_scopes', :to => 'scopes#contributing_scopes'
-              end
+                get 'project_scopes', :to => 'scopes#project_scopes'
+                get 'contributing_scopes', :to => 'scopes#contributing_scopes'
+    end
   end
   
- 
-  
-  
-  
+ resources :scope_cycles do
+          collection do
+                      get 'manage', :to => 'scope_cycles#manage'
+          end
+  end  
+
 
   get 'home/index'
 

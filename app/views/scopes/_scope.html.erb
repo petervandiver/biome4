@@ -9,7 +9,7 @@
     <td><%= scope.stored_materials_used %></td>
     <td><%= scope.contributor.name %></td>
     <td><%= scope.send_invite_to %></td>
-    <td><%= link_to "Show", scope %></td>
+    <td><%= link_to "Manage", manage_scope_cycles_path(:scope_id => scope.id) %></td>
    	<td><%= link_to "Edit", edit_scope_path(scope, :project_id => @project.id), remote: true %></td>
    	<td><%= link_to "Delete", scope, remote: true, method: :delete, id: scope.id %></td>
   </tr>

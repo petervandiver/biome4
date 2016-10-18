@@ -1,0 +1,1 @@
+json.array! @scope_cycles, partial: 'scope_cycles/scope_cycle', as: :scope_cycle
