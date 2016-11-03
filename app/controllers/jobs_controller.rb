@@ -1,10 +1,15 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
+  respond_to :html
+  respond_to :js
+
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.all
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
+    @jobs = Job.where("scope_cycle_id = ?", params[:scope_cycle_id]) 
+
   end
 
   # GET /jobs/1
@@ -15,20 +20,23 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
   end
 
   # GET /jobs/1/edit
   def edit
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
   end
 
   # POST /jobs
   # POST /jobs.json
   def create
     @job = Job.new(job_params)
-
+    @scope_cycle = @job.scope_cycle
     respond_to do |format|
       if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
+        format.js 
+        format.html 
         format.json { render :show, status: :created, location: @job }
       else
         format.html { render :new }
@@ -54,10 +62,10 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   # DELETE /jobs/1.json
   def destroy
+    @job = Job.find(params[:id])
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js
     end
   end
 
@@ -69,6 +77,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:description, :value, :previous_complete, :this_application, :completed_to_date_percent, :completed_to_date_value, :scope_cycle_id)
+      params.require(:job).permit(:form_id, :description, :value, :previous_complete, :this_application, :completed_to_date_percent, :completed_to_date_value, :scope_cycle_id)
     end
 end

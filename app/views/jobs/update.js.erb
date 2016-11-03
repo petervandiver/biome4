@@ -1,0 +1,8 @@
+
+var update_element = document.getElementById("job-<%=j @job.id.to_s %>");
+<% if @job.errors.any? %>
+  oldForm.html('<%= j( render 'form' ) %>');
+<% else %>
+  $('#job-form').remove();
+  $('#jobs-list').append('<%= j(render @job) %>');
+<% end %>

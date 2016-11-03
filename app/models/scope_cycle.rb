@@ -6,8 +6,4 @@ class ScopeCycle < ActiveRecord::Base
 	belongs_to :billing_period
 
 
-	accepts_nested_attributes_for :documents, :jobs, :stored_materials
-
-
-
 end

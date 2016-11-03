@@ -2,7 +2,10 @@
 <%= render 'scopes/scope_blurb' %>
 
 <p>
-<h4 style='display:inline'>Current Cycle</h4>&nbsp;&nbsp;&nbsp;&nbsp; <%= link_to 'start new cycle' %> &nbsp;|&nbsp; <%= link_to 'past cycles' %> 
+<h4 style='display:inline'>Current Cycle</h4>&nbsp;&nbsp;&nbsp;&nbsp; 
+<%= link_to 'start new cycle', new_scope_cycle_path(:scope_id => @scope.id)%> &nbsp;|&nbsp; 
+<%= link_to 'past cycles' %> 
+
 </p>
 <p>
 
@@ -56,8 +59,43 @@
 </p>
 
 
-<%= link_to "Schedule of Values","#", id: "toggleSov" %>
+<div>
+<% if @scope_cycle.jobs.blank? %>
+    <%= link_to 'Create Schedule of Values', jobs_path(:scope_cycle_id => @scope_cycle.id) %>
+<% else %>
 
-<div style="display: none" id="cycle-jobs-partial">
-<%= render 'cycle_jobs' %>
+    <br />
+    <a href='#' id="toggle-cycle-jobs"> Schedule of Values </a>
+    <div style="display:none" id='cycle-jobs'>
+    	<%= render 'cycle_jobs' %>
+    </div>
+
+<% end %>
+</div>
+<br />
+<div>
+<% if @scope_cycle.stored_materials.blank? %>
+    <%= link_to 'Create Materials Stored', stored_materials_path(:scope_cycle_id => @scope_cycle.id) %>
+<% else %>
+
+<a href='#' id="toggle-cycle-stored-materials"> Materials Stored </a>
+<div style="display:none" id='cycle-stored-materials'>
+	<%= render 'cycle_stored_materials' %>
+</div>
+
+<% end %>
+</div>
+<br />
+
+<div>
+<% if @scope_cycle.documents.blank? %>
+    <%= link_to 'Upload Documents', documents_path(:scope_cycle_id => @scope_cycle.id) %>
+<% else %>
+
+<a href='#' id="toggle-cycle-documents"> Documents </a>
+<div style="display:none" id='cycle-documents'>
+	<%= render 'cycle_documents' %>
+</div>
+
+<% end %>
 </div>

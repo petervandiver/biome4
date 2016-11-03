@@ -1,39 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Jobs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Value</th>
-      <th>Previous complete</th>
-      <th>This application</th>
-      <th>Completed to date percent</th>
-      <th>Completed to date value</th>
-      <th>Scope cycle</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.description %></td>
-        <td><%= job.value %></td>
-        <td><%= job.previous_complete %></td>
-        <td><%= job.this_application %></td>
-        <td><%= job.completed_to_date_percent %></td>
-        <td><%= job.completed_to_date_value %></td>
-        <td><%= job.scope_cycle_id %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+  <div class="container">
+        
 
-<%= link_to 'New Job', new_job_path %>
+      <div class="row" style="border-bottom: .3px solid gray"  id='cycle-jobs-headers'>
+        <div class="col-md-2 jobs-col-descr" >
+          <div class="cycle-jobs-head"><strong>description</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">
+          <div class="cycle-jobs-head"><strong>value</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">
+          <div class="cycle-jobs-head"><strong>previous complete</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>this application</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>percent completed</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>Dollar value completed</strong></div>
+        </div>
+        <div class="col-md-1 jobs-col-action">  
+          <div class="cycle-jobs-head"></div>
+        </div>
+        <div class="col-md-1 jobs-col-action">  
+          <div class="cycle-jobs-head"></div>
+        </div>
+      </div>  
+  
+    <div id='jobs-list'>
+      <%= render @jobs %>
+    </div>
+  </div>
+
+<br />
+<br />
+<%= link_to 'Add row', new_job_path(:scope_cycle_id => @scope_cycle.id), remote: true, id: 'new-job-link' %>

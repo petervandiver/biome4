@@ -1,0 +1,48 @@
+
+	<div class="container">
+	  		
+
+   		<div class="row" style="border-bottom: .3px solid gray"  id='cycle-stored-materials-headers'>
+   			<div class="col-md-2">
+   				<div class="cycle-stored-material-head"><strong>description</strong></div>
+   			</div>	
+   			<div class="col-md-2">
+   				<div class="cycle-stored-material-head"><strong>$ Stored at cycle start</strong></div>
+   			</div>	
+   			<div class="col-md-2">
+   				<div class="cycle-stored-material-head"><strong>$ Received this cycle</strong></div>
+   			</div>	
+   			<div class="col-md-2">	
+   				<div class="cycle-stored-material-head"><strong>Installed this cycle</strong></div>
+   			</div>	
+   			<div class="col-md-2">	
+   				<div class="cycle-stored-material-head"><strong>Stored at cycle end</strong></div>
+   			</div>	
+   			
+   		</div>	
+	
+
+	<% @stored_materials.each do |stored_material| %>
+
+   		<div class="row" style="border-bottom: .3px solid gray" id='stored_material<%= stored_material.id %>'>
+   			<div class="col-md-2">
+   				<div class="stored-material-value"><%= stored_material.description %></div>
+   			</div>	
+   			<div class="col-md-2">
+   				<div class="stored-material-value"><%= stored_material.stored_at_cycle_start %></div>
+   			</div>	
+   			<div class="col-md-2">
+   				<div class="stored-material-value"><%= stored_material.received_this_cycle %></div>
+   			</div>	
+   			<div class="col-md-2">	
+   				<div class="stored-material-value"><%= stored_material.installed_this_cycle %></div>
+   			</div>
+   			<div class="col-md-2">	
+   				<div class="stored-material-value"><%= stored_material.stored_at_cycle_end %></div>
+   			</div>	
+   				   			
+   		</div>	
+   	<% end %>
+	</div>
+
+

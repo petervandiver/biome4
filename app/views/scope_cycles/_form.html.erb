@@ -11,22 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :billing_period_id %><br>
-    <%= f.number_field :billing_period_id %>
-  </div>
-  <div class="field">
-    <%= f.label :scope_id %><br>
-    <%= f.number_field :scope_id %>
-  </div>
-  <div class="field">
-    <%= f.label :contributor_id %><br>
-    <%= f.number_field :contributor_id %>
-  </div>
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.number_field :owner_id %>
-  </div>
+  <%= f.hidden_field :scope_id, :value => @scope.id %>
+
+  <%= f.hidden_field :owner_id, :value => current_org_admin.organization.id %>
+
+  <%= f.hidden_field :contributor_id, :value => @scope.contributor.id %>
+
+ 
   <div class="field">
     <%= f.label :cycle_start_date %><br>
     <%= f.date_select :cycle_start_date %>

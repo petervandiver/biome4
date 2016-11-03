@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016203254) do
+ActiveRecord::Schema.define(version: 20161101005137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161016203254) do
     t.integer  "scope_cycle_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "form_id"
   end
 
   create_table "org_admins", force: :cascade do |t|
@@ -169,6 +170,7 @@ ActiveRecord::Schema.define(version: 20161016203254) do
     t.decimal  "stored_at_cycle_end"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "form_id"
   end
 
 end

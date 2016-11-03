@@ -2,6 +2,7 @@ class ScopeCyclesController < ApplicationController
   before_action :authenticate_org_admin!
   before_action :set_scope_cycle, only: [:show, :edit, :update, :destroy]
 
+
   # GET /scope_cycles
   # GET /scope_cycles.json
   def index
@@ -9,14 +10,17 @@ class ScopeCyclesController < ApplicationController
   end
 
   def manage
+    @scope = Scope.find(params[:scope_id])
+    @contributor = Organization.where('id = ?', params[:contributor_id])
     @cycles = ScopeCycle.where('scope_id = ?', params[:scope_id])
     @scope_cycle = @cycles.order('created_at').last
-    @scope = Scope.find(params[:scope_id])
+    @jobs = Job.where('scope_cycle_id = ?', @scope_cycle.id)
+    @stored_materials = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id)
+    @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)
+
     @billing_periods = BillingPeriod.all
     @organizations = Organization.all
     @csi_divisions = CsiDivision.all
-
-    @jobs = Job.where('scope_cycle_id = ?', @scope_cycle.id)
 
   end
 
@@ -27,6 +31,7 @@ class ScopeCyclesController < ApplicationController
 
   # GET /scope_cycles/new
   def new
+    @scope = Scope.find(params[:scope_id])
     @scope_cycle = ScopeCycle.new
   end
 
@@ -41,7 +46,7 @@ class ScopeCyclesController < ApplicationController
 
     respond_to do |format|
       if @scope_cycle.save
-        format.html { redirect_to @scope_cycle, notice: 'Scope cycle was successfully created.' }
+        format.html { redirect_to manage_scope_cycles_path(:scope_id => @scope_cycle.scope_id), notice: 'Scope cycle was successfully created.' }
         format.json { render :show, status: :created, location: @scope_cycle }
       else
         format.html { render :new }
@@ -86,15 +91,6 @@ class ScopeCyclesController < ApplicationController
                                           :cycle_end_date, :owner_approved, :contributor_approved, :cycle_suspended, 
                                           :cycle_cancelled, :original_contract_amt, :completed_to_date_total, 
                                           :stored_materials_total, :retainage, :less_owner_purchases, :less_previous_pay_request, 
-                                          :amount_due,
-
-                                          job_attributes: [:description, :value, :previous_complete, :this_application, 
-                                                      :completed_to_date_percent, :completed_to_date_value, :scope_cycle_id],
-
-                                          stored_materials_attributes: [:description, :scope_cycle_id, :stored_at_cycle_start, 
-                                                      :received_this_cycle, :installed_this_cycle, :stored_at_cycle_end],
-
-                                          document_attributes: [:name, :scope_cycle_id, :doc]
-                                          )
+                                          :amount_due)
     end
 end

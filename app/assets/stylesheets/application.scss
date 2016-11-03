@@ -1,6 +1,5 @@
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
+
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -15,3 +14,8 @@
  * file per style scope.
  *
  */
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "jobs";

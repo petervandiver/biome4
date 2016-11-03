@@ -1,0 +1,38 @@
+
+	<%= link_to 'Upload Document', new_document_path(:scope_cycle_id => @scope_cycle.id) %>
+
+	<div class="container">
+	  		
+
+   		<div class="row" style="border-bottom: .3px solid gray"  id='cycle-documents-headers'>
+   			<div class="col-md-2">
+   				<div class="cycle-documents-head"><strong>Document Name</strong></div>
+   			</div>	
+   			<div class="col-md-2">
+   				<div class="cycle-documents-head"><strong>File</strong></div>
+   			</div>
+   			<div class="col-md-2">
+   				<div class="cycle-documents-head"><strong></strong></div>
+   			</div>
+   		</div>	
+	
+
+	<% @documents.each do |document| %>
+
+   		<div class="row" style="border-bottom: .3px solid gray" id='document-<%= document.id %>'>
+   			<div class="col-md-2">
+   				<div class="document-value"><%= document.name %></div>
+   			</div>	
+   			<div class="col-md-2">
+   				<div class="document-value"><%= document.doc.file.filename %></div>
+   			</div>	  	
+   			<div class="col-md-2">
+   				<div class="document-value"><%= link_to "Download File", document.doc.url %></div>
+   			</div>	 
+
+   				
+   		</div>	
+   	<% end %>
+	</div>
+
+

@@ -1,4 +1,9 @@
-<%= form_for(@job) do |f| %>
+<br />
+<% @form_id = SecureRandom.hex %>
+
+<div class="row" id='job-form-<%= @form_id %>'>
+
+<%= form_for @job, remote: true  do |f| %>
   <% if @job.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
@@ -11,35 +16,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br>
-    <%= f.text_field :value %>
-  </div>
-  <div class="field">
-    <%= f.label :previous_complete %><br>
-    <%= f.text_field :previous_complete %>
-  </div>
-  <div class="field">
-    <%= f.label :this_application %><br>
-    <%= f.text_field :this_application %>
-  </div>
-  <div class="field">
-    <%= f.label :completed_to_date_percent %><br>
-    <%= f.text_field :completed_to_date_percent %>
-  </div>
-  <div class="field">
-    <%= f.label :completed_to_date_value %><br>
-    <%= f.text_field :completed_to_date_value %>
-  </div>
-  <div class="field">
-    <%= f.label :scope_cycle_id %><br>
-    <%= f.number_field :scope_cycle_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= f.hidden_field :form_id, :value => @form_id %>
+
+<%= f.hidden_field :scope_cycle_id, :value => @scope_cycle.id %>
+
+
+<div class="row" id='job-form'>
+        <div class="col-md-2 jobs-col-descr">
+          <div><%= f.text_area :description, :cols => "1", class: "form-control" %></div>
+        </div>  
+        <div class="col-xs-1 jobs-col-input">
+          <div><%= f.text_field :value, class: "form-control" %></div>
+        </div>  
+        <div class="col-md-1 jobs-col-input">
+          <div><%= f.text_field :previous_complete, class: "form-control" %></div>
+        </div>  
+        <div class="col-md-1 jobs-col-input">  
+          <div><%= f.text_field :this_application, class: "form-control" %></div>
+        </div>
+        <div class="col-md-1 jobs-col-input">  
+          <div><%= f.text_field :completed_to_date_percent, class: "form-control" %></div>
+        </div>  
+        <div class="col-md-1 jobs-col-input">  
+          <div><%= f.text_field :completed_to_date_value, class: "form-control" %></div>
+        </div>          
+        <div class="col-md-1 jobs-col-action">  
+          <div><%= f.submit 'submit', class: "btn btn-secondary" %></div>
+        </div>  
+        <div class="col-md-1 jobs-col-action">  
+          <div ><a href='javascript:void(0);' id="remove-job-form"> remove </a></div>
+          
+        </div>  
+      </div>  
+
 <% end %>
+</div>
