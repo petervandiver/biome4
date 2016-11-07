@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
    
-  resources :documents
   devise_for :org_admins, controllers: { registrations: "registrations" }
   
+  resources :documents
   resources :stored_materials
-  resources :jobs
+  resources :sovs
   resources :organizations
   resources :projects
   resources :scopes do

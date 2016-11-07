@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101005137) do
+ActiveRecord::Schema.define(version: 20161106202323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,10 +63,21 @@ ActiveRecord::Schema.define(version: 20161101005137) do
     t.decimal  "this_application"
     t.string   "completed_to_date_percent"
     t.decimal  "completed_to_date_value"
-    t.integer  "scope_cycle_id"
+    t.integer  "sov_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "form_id"
+  end
+
+  create_table "material_line_items", force: :cascade do |t|
+    t.integer  "stored_material_id"
+    t.text     "description"
+    t.decimal  "stored_at_cycle_start"
+    t.decimal  "received_this_cycle"
+    t.decimal  "installed_this_cycle"
+    t.decimal  "stored_at_cycle_end"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "org_admins", force: :cascade do |t|
@@ -161,15 +172,16 @@ ActiveRecord::Schema.define(version: 20161101005137) do
     t.datetime "updated_at",            null: false
   end
 
-  create_table "stored_materials", force: :cascade do |t|
-    t.text     "description"
+  create_table "sovs", force: :cascade do |t|
     t.integer  "scope_cycle_id"
-    t.decimal  "stored_at_cycle_start"
-    t.decimal  "received_this_cycle"
-    t.integer  "installed_this_cycle"
-    t.decimal  "stored_at_cycle_end"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "stored_materials", force: :cascade do |t|
+    t.integer  "scope_cycle_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "form_id"
   end
 

@@ -69,6 +69,9 @@ class StoredMaterialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stored_material_params
-      params.require(:stored_material).permit(:form_id, :description, :scope_cycle_id, :stored_at_cycle_start, :received_this_cycle, :installed_this_cycle, :stored_at_cycle_end)
+      params.require(:stored_material).permit(:scope_cycle_id, 
+
+                                              material_line_items_attributes: [:stored_material_id, :description, :stored_at_cycle_start, :received_this_cycle, :installed_this_cycle, :stored_at_cycle_end]
+                                              )
     end
 end

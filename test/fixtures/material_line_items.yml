@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scope_cycle_id: 1
+  description: MyText
+  stored_at_cycle_start: 9.99
+  received_this_cycle: 9.99
+  installed_this_cycle: 9.99
+  stored_at_cycle_end: 9.99
+
+two:
+  scope_cycle_id: 1
+  description: MyText
+  stored_at_cycle_start: 9.99
+  received_this_cycle: 9.99
+  installed_this_cycle: 9.99
+  stored_at_cycle_end: 9.99

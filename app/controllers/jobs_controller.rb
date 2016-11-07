@@ -9,7 +9,7 @@ class JobsController < ApplicationController
   def index
     @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
     @jobs = Job.where("scope_cycle_id = ?", params[:scope_cycle_id]) 
-
+    @job = Job.new
   end
 
   # GET /jobs/1
@@ -77,6 +77,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:form_id, :description, :value, :previous_complete, :this_application, :completed_to_date_percent, :completed_to_date_value, :scope_cycle_id)
+      params.require(:job).permit(:description, :value, :previous_complete, :this_application, :completed_to_date_percent, :completed_to_date_value, :sov_id)
     end
 end

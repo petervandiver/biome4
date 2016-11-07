@@ -3,3 +3,4 @@ var edit_element = document.getElementById("job-<%=j @job.id.to_s %>");
 edit_element.remove();
 var edit_form = $('<%= j render('edit') %>');
 $('#jobs-list').after(edit_form);
+

@@ -1,0 +1,1 @@
+json.array! @sovs, partial: 'sovs/sov', as: :sov

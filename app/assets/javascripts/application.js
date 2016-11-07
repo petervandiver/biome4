@@ -18,31 +18,3 @@
 
 
 
-$(function() {
-  $('a#toggle-cycle-jobs').click(function(event){
-    event.preventDefault();
-    $('div#cycle-jobs').toggle();
-  });
-}); 
-
-$(function() {
-  $('a#toggle-cycle-stored-materials').click(function(event){
-    event.preventDefault();
-    $('div#cycle-stored-materials').toggle();
-  });
-}); 
-
-$(function() {
-  $('a#toggle-cycle-documents').click(function(event){
-    event.preventDefault();
-    $('div#cycle-documents').toggle();
-  });
-}); 
-
-
-
-
-
-  $('a#remove-job-form').on('click', function(){
-    $(this).closest('div').remove();
-  });

@@ -1,0 +1,1 @@
+json.partial! "sovs/sov", sov: @sov

@@ -1,0 +1,1 @@
+json.array! @material_line_items, partial: 'material_line_items/material_line_item', as: :material_line_item

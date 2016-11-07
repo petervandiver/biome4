@@ -36,8 +36,68 @@
     <div id='jobs-list'>
       <%= render @jobs %>
     </div>
-  </div>
+
+     <%= form_for @job, remote: true  do |f| %>
+                 <% if @job.errors.any? %>
+                              <div id="error_explanation">
+                                <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+                                <ul>
+                                <% @job.errors.full_messages.each do |message| %>
+                                  <li><%= message %></li>
+                                <% end %>
+                                </ul>
+                              </div>
+                            <% end %>          
+
+    <div id='initial-job-form-container'>
+      <br />
+                  
+
+                  <div class="row" id='initial-job-form'>
+                           
+
+                  <%= f.hidden_field :scope_cycle_id, :value => @scope_cycle.id %>
+
+
+                  <div class="row" id='initial-job-form-row'>
+                          <div class="col-md-2 jobs-col-descr">
+                            <div><%= f.text_area :description, :cols => "1", class: "form-control" %></div>
+                          </div>  
+                          <div class="col-xs-1 jobs-col-input">
+                            <div><%= f.text_field :value, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">
+                            <div><%= f.text_field :previous_complete, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :this_application, class: "form-control" %></div>
+                          </div>
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :completed_to_date_percent, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :completed_to_date_value, class: "form-control" %></div>
+                          </div>
+                          <div class="col-md-1 jobs-col-action">
+                            <div class="actions"><%= f.submit 'submit', class: "btn btn-secondary" %></div>
+                          </div>          
+                      
+                  </div>  
+                  
+                  </div>
+      
+    
+    
+      
+    
 
 <br />
 <br />
-<%= link_to 'Add row', new_job_path(:scope_cycle_id => @scope_cycle.id), remote: true, id: 'new-job-link' %>
+
+
+<div class="pull-right"><button id="multiSubmit" type="button" class="btn btn-default">Submit</button></div>
+ <% end %>
+</div>
+<%= link_to 'Add row', new_job_path(:scope_cycle_id => @scope_cycle.id), remote: true, id: 'new-job-link' %>  
+</div>         

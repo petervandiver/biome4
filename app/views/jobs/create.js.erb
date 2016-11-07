@@ -1,5 +1,6 @@
 
 $('#jobs-list').append('<%= j(render @job) %>');
-
-var completed_form = document.getElementById("job-form-<%=j @job.form_id.to_s %>");
-completed_form.remove();
+$('#job-form').remove();
+$('#initial-job-form').hide();
+//var completed_form = document.getElementById("job-form-<%=j @job.form_id.to_s %>");
+//completed_form.remove();

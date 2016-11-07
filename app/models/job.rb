@@ -1,4 +1,4 @@
 class Job < ActiveRecord::Base
 
-	belongs_to :scope_cycle
+	belongs_to :sov
 end

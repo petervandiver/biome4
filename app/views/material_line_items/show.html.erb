@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Scope cycle:</strong>
+  <%= @material_line_item.scope_cycle_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @material_line_item.description %>
+</p>
+
+<p>
+  <strong>Stored at cycle start:</strong>
+  <%= @material_line_item.stored_at_cycle_start %>
+</p>
+
+<p>
+  <strong>Received this cycle:</strong>
+  <%= @material_line_item.received_this_cycle %>
+</p>
+
+<p>
+  <strong>Installed this cycle:</strong>
+  <%= @material_line_item.installed_this_cycle %>
+</p>
+
+<p>
+  <strong>Stored at cycle end:</strong>
+  <%= @material_line_item.stored_at_cycle_end %>
+</p>
+
+<%= link_to 'Edit', edit_material_line_item_path(@material_line_item) %> |
+<%= link_to 'Back', material_line_items_path %>

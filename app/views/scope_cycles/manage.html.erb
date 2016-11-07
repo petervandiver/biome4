@@ -1,8 +1,16 @@
 
 <%= render 'scopes/scope_blurb' %>
 
+<div>
+<% if @cycles == 'no cycles exist' %>
+
+<h4>No cycles exist.   </h4><%= link_to 'Create First Cycle', new_scope_cycle_path(:scope_id => @scope.id)%>
+<% else %>
+
+
+
 <p>
-<h4 style='display:inline'>Current Cycle</h4>&nbsp;&nbsp;&nbsp;&nbsp; 
+<h4 style='display:inline'>Current Cycle</h4> 
 <%= link_to 'start new cycle', new_scope_cycle_path(:scope_id => @scope.id)%> &nbsp;|&nbsp; 
 <%= link_to 'past cycles' %> 
 
@@ -60,26 +68,26 @@
 
 
 <div>
-<% if @scope_cycle.jobs.blank? %>
-    <%= link_to 'Create Schedule of Values', jobs_path(:scope_cycle_id => @scope_cycle.id) %>
+<% if @sov == 'no sov exists' %>
+    <%= link_to 'Create Schedule of Values', sovs_path(:scope_cycle_id => @scope_cycle.id) %>
 <% else %>
 
     <br />
-    <a href='#' id="toggle-cycle-jobs"> Schedule of Values </a>
-    <div style="display:none" id='cycle-jobs'>
-    	<%= render 'cycle_jobs' %>
+    <a href='#' id="toggle-cycle-sov"> Schedule of Values </a>
+    <div style="display:none" id='cycle-sov'>
+    	<%= render 'cycle_sovs' %>
     </div>
 
 <% end %>
 </div>
 <br />
 <div>
-<% if @scope_cycle.stored_materials.blank? %>
+<% if @stored_material == 'no materials stored exists' %>
     <%= link_to 'Create Materials Stored', stored_materials_path(:scope_cycle_id => @scope_cycle.id) %>
 <% else %>
 
-<a href='#' id="toggle-cycle-stored-materials"> Materials Stored </a>
-<div style="display:none" id='cycle-stored-materials'>
+<a href='#' id="toggle-cycle-stored-material"> Materials Stored </a>
+<div style="display:none" id='cycle-stored-material'>
 	<%= render 'cycle_stored_materials' %>
 </div>
 
@@ -96,6 +104,10 @@
 <div style="display:none" id='cycle-documents'>
 	<%= render 'cycle_documents' %>
 </div>
+
+<% end %>
+</div>
+
 
 <% end %>
 </div>

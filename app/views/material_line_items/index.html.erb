@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Material Line Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scope cycle</th>
+      <th>Description</th>
+      <th>Stored at cycle start</th>
+      <th>Received this cycle</th>
+      <th>Installed this cycle</th>
+      <th>Stored at cycle end</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @material_line_items.each do |material_line_item| %>
+      <tr>
+        <td><%= material_line_item.scope_cycle_id %></td>
+        <td><%= material_line_item.description %></td>
+        <td><%= material_line_item.stored_at_cycle_start %></td>
+        <td><%= material_line_item.received_this_cycle %></td>
+        <td><%= material_line_item.installed_this_cycle %></td>
+        <td><%= material_line_item.stored_at_cycle_end %></td>
+        <td><%= link_to 'Show', material_line_item %></td>
+        <td><%= link_to 'Edit', edit_material_line_item_path(material_line_item) %></td>
+        <td><%= link_to 'Destroy', material_line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Material line item', new_material_line_item_path %>

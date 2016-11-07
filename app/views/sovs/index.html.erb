@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sovs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scope cycle</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sovs.each do |sov| %>
+      <tr>
+        <td><%= sov.scope_cycle_id %></td>
+        <td><%= link_to 'Show', sov %></td>
+        <td><%= link_to 'Edit', edit_sov_path(sov) %></td>
+        <td><%= link_to 'Destroy', sov, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sov', new_sov_path %>

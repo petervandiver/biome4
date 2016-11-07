@@ -1,7 +1,7 @@
 <br />
-<% @form_id = SecureRandom.hex %>
 
-<div class="row" id='job-form-<%= @form_id %>'>
+
+<div class="row" id='job-form'>
 
 <%= form_for @job, remote: true  do |f| %>
   <% if @job.errors.any? %>
@@ -16,7 +16,7 @@
     </div>
   <% end %>
 
-<%= f.hidden_field :form_id, :value => @form_id %>
+
 
 <%= f.hidden_field :scope_cycle_id, :value => @scope_cycle.id %>
 
@@ -41,13 +41,14 @@
           <div><%= f.text_field :completed_to_date_value, class: "form-control" %></div>
         </div>          
         <div class="col-md-1 jobs-col-action">  
-          <div><%= f.submit 'submit', class: "btn btn-secondary" %></div>
-        </div>  
-        <div class="col-md-1 jobs-col-action">  
-          <div ><a href='javascript:void(0);' id="remove-job-form"> remove </a></div>
-          
-        </div>  
+          <div ><a href='#' id="remove-job-form"> remove </a></div>
+        </div>
+        <div class="col-md-1 jobs-col-action">
+          <div class="actions"><%= f.submit 'submit', class: "btn btn-secondary" %></div>
+        </div>   
+
       </div>  
+
 
 <% end %>
 </div>

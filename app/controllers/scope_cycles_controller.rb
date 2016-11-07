@@ -12,16 +12,35 @@ class ScopeCyclesController < ApplicationController
   def manage
     @scope = Scope.find(params[:scope_id])
     @contributor = Organization.where('id = ?', params[:contributor_id])
-    @cycles = ScopeCycle.where('scope_id = ?', params[:scope_id])
-    @scope_cycle = @cycles.order('created_at').last
-    @jobs = Job.where('scope_cycle_id = ?', @scope_cycle.id)
-    @stored_materials = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id)
-    @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)
-
-    @billing_periods = BillingPeriod.all
     @organizations = Organization.all
     @csi_divisions = CsiDivision.all
+    @cycles = ScopeCycle.where('scope_id = ?', params[:scope_id])
+    @billing_periods = BillingPeriod.all
 
+        if @cycles.blank? 
+          @cycles = 'no cycles exist'
+        else
+        
+        @scope_cycle = @cycles.order('created_at').last
+        @sov = Sov.where('scope_cycle_id = ?', @scope_cycle.id)
+        @stored_material = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id)    
+        @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)
+
+            
+            if @sov.blank?
+                @sov = 'no sov exists'
+            else  
+                @jobs = Job.where('sov_id = ?', @sov.id)
+            end
+
+
+            if @stored_material.blank?
+                @stored_material = 'no materials stored exists'
+            else  
+                @material_line_items = MaterialLineItem.where('stored_material_id = ?', @stored_material.id)
+            end
+        
+        end        
   end
 
   # GET /scope_cycles/1
