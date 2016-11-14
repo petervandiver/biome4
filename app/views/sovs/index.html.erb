@@ -1,27 +1,109 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Sovs</h1>
+<div class="container">
+        
 
-<table>
-  <thead>
-    <tr>
-      <th>Scope cycle</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="row" style="border-bottom: .3px solid gray"  id='cycle-jobs-headers'>
+        <div class="col-md-2 jobs-col-descr" >
+          <div class="cycle-jobs-head"><strong>description</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">
+          <div class="cycle-jobs-head"><strong>value</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">
+          <div class="cycle-jobs-head"><strong>previous complete</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>this application</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>percent completed</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>Dollar value completed</strong></div>
+        </div>
+        <div class="col-md-1 jobs-col-action">  
+          <div class="cycle-jobs-head"></div>
+        </div>
+        <div class="col-md-1 jobs-col-action">  
+          <div class="cycle-jobs-head"></div>
+        </div>
+      </div>  
+  
+    
+      <% if @jobs.blank? %>
+      <% else %>   
+         <% @jobs.each do |j| %> 
+          <div id='jobs-list'>
+            <%= render job %>
+          </div>
+          <% end %> 
+      
+      <% end %>
 
-  <tbody>
-    <% @sovs.each do |sov| %>
-      <tr>
-        <td><%= sov.scope_cycle_id %></td>
-        <td><%= link_to 'Show', sov %></td>
-        <td><%= link_to 'Edit', edit_sov_path(sov) %></td>
-        <td><%= link_to 'Destroy', sov, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+     <%= form_for @sov, remote: true  do |sov_form| %>
+                 <% if @sov.errors.any? %>
+                              <div id="error_explanation">
+                                <h2><%= pluralize(@sov.errors.count, "error") %> prohibited this SOV from being saved:</h2>
 
-<%= link_to 'New Sov', new_sov_path %>
+                                <ul>
+                                <% @sov.errors.full_messages.each do |message| %>
+                                  <li><%= message %></li>
+                                <% end %>
+                                </ul>
+                              </div>
+                            <% end %>          
+
+                <%= sov_form.hidden_field :scope_cycle_id, :value => @scope_cycle.id %>
+
+
+        <% fields_for :job do |f| %>
+
+    <div id='job-fields-container'>
+      <br />
+                  
+
+              <div class="row" id='initial-job-fields'>
+                           
+
+                  <div class="row" id='initial-job-fields-row'>
+                          <div class="col-md-2 jobs-col-descr">
+                            <div><%= f.text_area :description, :cols => "1", class: "form-control" %></div>
+                          </div>  
+                          <div class="col-xs-1 jobs-col-input">
+                            <div><%= f.text_field :value, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">
+                            <div><%= f.text_field :previous_complete, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :this_application, class: "form-control" %></div>
+                          </div>
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :completed_to_date_percent, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :completed_to_date_value, class: "form-control" %></div>
+                          </div>
+                                 
+                      
+                  </div>  
+                  
+              </div>
+      
+        <% end %>    
+    
+      
+    
+
+<br />
+<br />
+
+
+
+<div class="pull-right"><%= sov_form.submit 'submit', class: "btn btn-primary pull-right", remote: true, id: 'multiSubmit' %></div>
+ <% end %>
+</div>
+<%= link_to 'Add row', new_job_path(:scope_cycle_id => @scope_cycle.id), remote: true, id: 'new-job-link' %>  
+</div>         

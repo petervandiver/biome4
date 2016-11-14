@@ -1,10 +1,31 @@
 class SovsController < ApplicationController
   before_action :set_sov, only: [:show, :edit, :update, :destroy]
 
+    respond_to :html
+    respond_to :js
+
+
+
   # GET /sovs
   # GET /sovs.json
   def index
-    @sovs = Sov.all
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])   
+    @sov = Sov.where("scope_cycle_id = ?", params[:scope_cycle_id])     
+         
+          
+          if @current_sov.blank?
+          else  
+                @sov = Sov.where("scope_cycle_id = ?", params[:scope_cycle_id])
+                @jobs = Job.where('sov_id = ?', @sov.id)
+
+                  if @jobs.blank?
+                        @jobs = 'no jobs exist'
+                  else
+                      @jobs = Job.where('sov_id = ?', @sov.id)
+                  end
+
+          end
+    
   end
 
   # GET /sovs/1
@@ -14,11 +35,14 @@ class SovsController < ApplicationController
 
   # GET /sovs/new
   def new
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
     @sov = Sov.new
+    
   end
 
   # GET /sovs/1/edit
   def edit
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
   end
 
   # POST /sovs
@@ -28,7 +52,8 @@ class SovsController < ApplicationController
 
     respond_to do |format|
       if @sov.save
-        format.html { redirect_to @sov, notice: 'Sov was successfully created.' }
+          @scope_cycle = @sov.scope_cycle
+        format.html { redirect_to manage_scope_cycles_path(:scope_id => @scope_cycle.scope_id), notice: 'SOV created' }
         format.json { render :show, status: :created, location: @sov }
       else
         format.html { render :new }
@@ -42,7 +67,8 @@ class SovsController < ApplicationController
   def update
     respond_to do |format|
       if @sov.update(sov_params)
-        format.html { redirect_to @sov, notice: 'Sov was successfully updated.' }
+          @scope_cycle = @sov.scope_cycle
+        format.html { redirect_to manage_scope_cycles_path(:scope_id => @scope_cycle.scope_id), notice: 'SOV updated' }
         format.json { render :show, status: :ok, location: @sov }
       else
         format.html { render :edit }
@@ -71,7 +97,7 @@ class SovsController < ApplicationController
     def sov_params
       params.require(:sov).permit(:scope_cycle_id, 
 
-                                  jobs_attributes: [:description, :value, :previous_complete, :this_application, :completed_to_date_percent, :completed_to_date_value, :sov_id]
+                                  jobs_attributes: [:id, :description, :value, :previous_complete, :this_application, :completed_to_date_percent, :completed_to_date_value, :sov_id, :_destroy]
                                   )
     end
 end

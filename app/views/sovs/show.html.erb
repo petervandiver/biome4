@@ -5,5 +5,41 @@
   <%= @sov.scope_cycle_id %>
 </p>
 
+<% @sov.jobs.each do |job| %>
+<p>
+  <strong>Description:</strong>
+  <%= job.description %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= job.value %>
+</p>
+
+<p>
+  <strong>Previous complete:</strong>
+  <%= job.previous_complete %>
+</p>
+
+<p>
+  <strong>This application:</strong>
+  <%= job.this_application %>
+</p>
+
+<p>
+  <strong>Completed to date percent:</strong>
+  <%= job.completed_to_date_percent %>
+</p>
+
+<p>
+  <strong>Completed to date value:</strong>
+  <%= job.completed_to_date_value %>
+</p>
+
+
+
+<% end %>
+
+
 <%= link_to 'Edit', edit_sov_path(@sov) %> |
 <%= link_to 'Back', sovs_path %>

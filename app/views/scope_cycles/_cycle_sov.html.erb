@@ -1,6 +1,9 @@
 
 
-	<div class="container">
+
+<h5>Schedule of Values | <%= link_to 'Edit', edit_sov_path(@sov, :scope_cycle_id => @scope_cycle.id) %></h5>
+	
+   <div class="container">
 	  		
 
    		<div class="row" style="border-bottom: .3px solid gray"  id='cycle-jobs-headers'>
@@ -24,31 +27,30 @@
    			</div>
    		</div>	
 	
-<% for @sov do |d| %>
-	<% d.jobs.each do |job| %>
+
+	<% @jobs.each do |job| %>
 
    		<div class="row" style="border-bottom: .3px solid gray" id='job-<%= job.id %>'>
    			<div class="col-md-2">
-   				<div class="job-value"><%= d.job.description %></div>
+   				<div class="job-value"><%= job.description %></div>
    			</div>	
    			<div class="col-md-2">
-   				<div class="job-value"><%= d.job.value %></div>
+   				<div class="job-value"><%= job.value %></div>
    			</div>	
    			<div class="col-md-2">
-   				<div class="job-value"><%= d.job.previous_complete %></div>
+   				<div class="job-value"><%= job.previous_complete %></div>
    			</div>	
    			<div class="col-md-2">	
-   				<div class="job-value"><%= d.job.this_application %></div>
+   				<div class="job-value"><%= job.this_application %></div>
    			</div>
    			<div class="col-md-2">	
-   				<div class="job-value"><%= d.job.completed_to_date_percent %></div>
+   				<div class="job-value"><%= job.completed_to_date_percent %></div>
    			</div>	
    			<div class="col-md-2">	
-   				<div class="job-value"><%= d.job.completed_to_date_value %></div>
+   				<div class="job-value"><%= job.completed_to_date_value %></div>
    			</div>	   			
    		</div>	
    	<% end %>
-      <% end %>
 	</div>
 
 

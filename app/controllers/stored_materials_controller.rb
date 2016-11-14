@@ -71,7 +71,7 @@ class StoredMaterialsController < ApplicationController
     def stored_material_params
       params.require(:stored_material).permit(:scope_cycle_id, 
 
-                                              material_line_items_attributes: [:stored_material_id, :description, :stored_at_cycle_start, :received_this_cycle, :installed_this_cycle, :stored_at_cycle_end]
+                                              material_line_items_attributes: [:id, :stored_material_id, :description, :stored_at_cycle_start, :received_this_cycle, :installed_this_cycle, :stored_at_cycle_end, :_destroy]
                                               )
     end
 end

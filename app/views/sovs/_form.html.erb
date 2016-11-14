@@ -1,3 +1,5 @@
+<div id="sov_form">
+
 <%= form_for(@sov) do |f| %>
   <% if @sov.errors.any? %>
     <div id="error_explanation">
@@ -11,11 +13,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :scope_cycle_id %><br>
-    <%= f.number_field :scope_cycle_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= f.hidden_field :scope_cycle_id, :value => @scope_cycle.id %>
+
+
+      <div class="row" style="border-bottom: .3px solid gray"  id='cycle-jobs-headers'>
+        <div class="col-md-2 jobs-col-descr" >
+          <div class="cycle-jobs-head"><strong>description</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">
+          <div class="cycle-jobs-head"><strong>value</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">
+          <div class="cycle-jobs-head"><strong>previous complete</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>this application</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>percent completed</strong></div>
+        </div>  
+        <div class="col-md-1 jobs-col-grid">  
+          <div class="cycle-jobs-head"><strong>Dollar value completed</strong></div>
+        </div>
+        <div class="col-md-1 jobs-col-action">  
+          <div class="cycle-jobs-head"></div>
+        </div>
+        <div class="col-md-1 jobs-col-action">  
+          <div class="cycle-jobs-head"></div>
+        </div>
+      </div>  
+
+
+
+      <div id='job-fields-container'>
+        <%= f.fields_for :jobs do |job| %>
+        <%= render 'job_fields', :f => job %>
+        <% end %>
+        <br />
+        <div class='links'><%= link_to_add_association 'add row', f, :jobs %></div>
+      </div>
+
+              <div class="pull-right"><%= f.submit 'submit', class: "btn btn-primary", remote: true, id: 'multiSubmit' %></div>
+ <% end %>
+              </div>
+              
+              
+</div> 

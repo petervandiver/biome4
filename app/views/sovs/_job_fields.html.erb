@@ -1,0 +1,36 @@
+ 
+
+      
+     
+                  
+
+              	<div class = 'nested-fields' id='initial-job-fields'>
+                          
+
+                  <div class="row" id='initial-job-fields-row'>
+                          <div class="col-md-2 jobs-col-descr">
+                            <div><%= f.text_area :description, :cols => "1", class: "form-control" %></div>
+                          </div>  
+                          <div class="col-xs-1 jobs-col-input">
+                            <div><%= f.text_field :value, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">
+                            <div><%= f.text_field :previous_complete, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :this_application, class: "form-control" %></div>
+                          </div>
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :completed_to_date_percent, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= f.text_field :completed_to_date_value, class: "form-control" %></div>
+                          </div>
+                          <div class="col-md-1 jobs-col-input">  
+                            <div><%= link_to_remove_association 'remove row', f %></div>
+                          </div>
+                  </div>  
+                  
+         		</div>
+      
+   
