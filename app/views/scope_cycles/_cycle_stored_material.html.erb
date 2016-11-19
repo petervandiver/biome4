@@ -21,29 +21,27 @@
    			
    		</div>	
 	
-<% for @stored_material do |d| %>
-	<% d.material_line_item.each do |material_line_item| %>
+<% @material_line_items.each do |material_line_item| %>
 
    		<div class="row" style="border-bottom: .3px solid gray" id='material-line-item-<%= material_line_item.id %>'>
    			<div class="col-md-2">
-   				<div class="stored-material-value"><%= d.material_line_item.description %></div>
+   				<div class="stored-material-value"><%= material_line_item.description %></div>
    			</div>	
    			<div class="col-md-2">
-   				<div class="stored-material-value"><%= d.material_line_item.stored_at_cycle_start %></div>
+   				<div class="stored-material-value"><%= material_line_item.stored_at_cycle_start %></div>
    			</div>	
    			<div class="col-md-2">
-   				<div class="stored-material-value"><%= d.material_line_item.received_this_cycle %></div>
+   				<div class="stored-material-value"><%= material_line_item.received_this_cycle %></div>
    			</div>	
    			<div class="col-md-2">	
-   				<div class="stored-material-value"><%= d.material_line_item.installed_this_cycle %></div>
+   				<div class="stored-material-value"><%= material_line_item.installed_this_cycle %></div>
    			</div>
    			<div class="col-md-2">	
-   				<div class="stored-material-value"><%= d.material_line_item.stored_at_cycle_end %></div>
+   				<div class="stored-material-value"><%= material_line_item.stored_at_cycle_end %></div>
    			</div>	
    				   			
    		</div>	
    	<% end %>
-      <% end %>
 	</div>
 
 

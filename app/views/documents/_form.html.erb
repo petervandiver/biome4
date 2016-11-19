@@ -11,14 +11,13 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :scope_cycle_id, :value => @scope_cycle.id %>
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :scope_cycle_id %><br>
-    <%= f.number_field :scope_cycle_id %>
-  </div>
+ 
   <div class="field">
    Select your file
     <%= f.file_field :doc %>

@@ -1,3 +1,5 @@
+<div id="stored_material_form">
+
 <%= form_for(@stored_material) do |f| %>
   <% if @stored_material.errors.any? %>
     <div id="error_explanation">
@@ -11,31 +13,48 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :scope_cycle_id %><br>
-    <%= f.number_field :scope_cycle_id %>
-  </div>
-  <div class="field">
-    <%= f.label :stored_at_cycle_start %><br>
-    <%= f.text_field :stored_at_cycle_start %>
-  </div>
-  <div class="field">
-    <%= f.label :received_this_cycle %><br>
-    <%= f.text_field :received_this_cycle %>
-  </div>
-  <div class="field">
-    <%= f.label :installed_this_cycle %><br>
-    <%= f.number_field :installed_this_cycle %>
-  </div>
-  <div class="field">
-    <%= f.label :stored_at_cycle_end %><br>
-    <%= f.text_field :stored_at_cycle_end %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <%= f.hidden_field :scope_cycle_id, :value => @scope_cycle.id %>
+
+        <div class="row" style="border-bottom: .3px solid gray"  id='cycle-material-line-item-headers'>
+        <div class="col-md-2 material-line-item-col-descr" >
+          <div class="cycle-material-line-item-head"><strong>description</strong></div>
+        </div>  
+        <div class="col-md-1 material-line-item-col-grid">
+          <div class="cycle-material-line-item-head"><strong>stored at cycle start</strong></div>
+        </div>  
+        <div class="col-md-1 material-line-item-col-grid">
+          <div class="cycle-material-line-item-head"><strong>received this cycle</strong></div>
+        </div>  
+        <div class="col-md-1 material-line-item-col-grid">  
+          <div class="cycle-material-line-item-head"><strong>installed this cycle</strong></div>
+        </div>  
+        <div class="col-md-1 material-line-item-col-grid">  
+          <div class="cycle-material-line-item-head"><strong>stored at cycle end</strong></div>
+        </div>  
+        <div class="col-md-1 material-line-item-col-grid">  
+          <div class="cycle-material-line-item-head"></div>
+        </div>
+        <div class="col-md-1 material-line-item-col-action">  
+          <div class="cycle-material-line-item-head"></div>
+        </div>
+        <div class="col-md-1 material-line-item-col-action">  
+          <div class="cycle-material-line-item-head"></div>
+        </div>
+      </div>  
+
+
+
+      <div id='material-line-item-fields-container'>
+        <%= f.fields_for :material_line_items do |material_line_item| %>
+        <%= render 'material_line_item_fields', :f => material_line_item %>
+        <% end %>
+        <br />
+        <div class='links'><%= link_to_add_association 'add row', f, :material_line_items %></div>
+      </div>
+
+              <div class="pull-right"><%= f.submit 'submit', class: "btn btn-primary", remote: true, id: 'multiSubmit' %></div>
+ <% end %>
+              </div>
+              
+              
+</div> 

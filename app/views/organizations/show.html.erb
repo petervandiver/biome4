@@ -78,9 +78,7 @@
   					      <td><%= project.end_date %></td>
   					      <td><%= project.project_address %></td>
   					      <td><%= project.project_address_zip %></td>
-  					      <td><%= link_to 'Show', project %></td>
-  					      <td><%= link_to 'Edit', edit_project_path(project) %></td>
-  					      <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  					      <td><%= link_to 'Show', project_scopes_scopes_path(:project_id => project.id) %></td>
   					    </tr>
   					  <% end %>
   					</tbody>

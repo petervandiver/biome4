@@ -6,18 +6,19 @@ Rails.application.routes.draw do
   resources :stored_materials
   resources :sovs
   resources :organizations
-  resources :projects
+  resources :projects 
+  
   resources :scopes do
-    collection do
+      collection do
                 get 'project_scopes', :to => 'scopes#project_scopes'
                 get 'contributing_scopes', :to => 'scopes#contributing_scopes'
-    end
+      end
   end
   
  resources :scope_cycles do
-          collection do
+      collection do
                       get 'manage', :to => 'scope_cycles#manage'
-          end
+      end
   end  
 
 

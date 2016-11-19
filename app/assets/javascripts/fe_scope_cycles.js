@@ -1,11 +1,12 @@
 
-
 $(function() {
   $('a#toggle-cycle-sov').click(function(event){
     event.preventDefault();
-    $('div#cycle-jobs').toggle();
+    $('div#cycle-sov-table').toggle();
   });
 }); 
+
+
 
 $(function() {
   $('a#toggle-cycle-stored-material').click(function(event){

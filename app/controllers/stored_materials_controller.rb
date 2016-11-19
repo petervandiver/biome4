@@ -14,11 +14,13 @@ class StoredMaterialsController < ApplicationController
 
   # GET /stored_materials/new
   def new
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
     @stored_material = StoredMaterial.new
   end
 
   # GET /stored_materials/1/edit
   def edit
+  @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
   end
 
   # POST /stored_materials
@@ -28,7 +30,8 @@ class StoredMaterialsController < ApplicationController
 
     respond_to do |format|
       if @stored_material.save
-        format.html { redirect_to @stored_material, notice: 'Stored material was successfully created.' }
+        @scope_cycle = @stored_material.scope_cycle
+        format.html { redirect_to manage_scope_cycles_path(:scope_id => @scope_cycle.scope_id), notice: 'Materials Stored created' }
         format.json { render :show, status: :created, location: @stored_material }
       else
         format.html { render :new }
@@ -42,7 +45,8 @@ class StoredMaterialsController < ApplicationController
   def update
     respond_to do |format|
       if @stored_material.update(stored_material_params)
-        format.html { redirect_to @stored_material, notice: 'Stored material was successfully updated.' }
+        @scope_cycle = @stored_material.scope_cycle
+        format.html { redirect_to manage_scope_cycles_path(:scope_id => @scope_cycle.scope_id), notice: 'Materials Stored updated' }
         format.json { render :show, status: :ok, location: @stored_material }
       else
         format.html { render :edit }

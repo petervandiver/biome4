@@ -21,6 +21,7 @@ class ScopeCyclesController < ApplicationController
     @stored_material = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id).first   
     @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)    
     @jobs = Job.where('sov_id= ?', @sov.id)
+    @material_line_items = MaterialLineItem.where('stored_material_id= ?', @stored_material.id)
 
 
 

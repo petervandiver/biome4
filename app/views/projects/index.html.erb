@@ -1,47 +1,6 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Projects</h1>
+<%= render 'owned' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Organization</th>
-      <th>Project number</th>
-      <th>Estimated spend</th>
-      <th>Square feet</th>
-      <th>Building type</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Project address</th>
-      <th>Project address zip</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= render 'contributing' %>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.description %></td>
-        <td><%= project.organization_id %></td>
-        <td><%= project.project_number %></td>
-        <td><%= project.estimated_spend %></td>
-        <td><%= project.square_feet %></td>
-        <td><%= project.building_type_id %></td>
-        <td><%= project.start_date %></td>
-        <td><%= project.end_date %></td>
-        <td><%= project.project_address %></td>
-        <td><%= project.project_address_zip %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Project', new_project_path %>

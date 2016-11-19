@@ -6,7 +6,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @owned_projects = Project.where('organization_id = ?', current_org_admin.organization.id)
+    @contributing_projects = Project.all
   end
 
   # GET /projects/1
@@ -18,10 +19,6 @@ class ProjectsController < ApplicationController
     @other_organizations = Organization.where('id != ?', current_org_admin.organization.id) 
     @csi_divisions = CsiDivision.all
     @billing_periods = BillingPeriod.all
-  end
-
-  def project
-
   end
 
   # GET /projects/new
@@ -39,7 +36,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to organization_path(:id => @project.organization_id) }
+        format.html { redirect_to projects_url, notice: "Project successfully created" }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -53,7 +50,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to projects_url, notice: 'Project successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }

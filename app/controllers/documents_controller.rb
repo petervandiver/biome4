@@ -14,11 +14,13 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
     @document = Document.new
   end
 
   # GET /documents/1/edit
   def edit
+    @scope_cycle = ScopeCycle.find(params[:scope_cycle_id])
   end
 
   # POST /documents
@@ -28,7 +30,8 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        @scope_cycle = @document.scope_cycle
+        format.html { redirect_to manage_scope_cycles_path(:scope_id => @scope_cycle.scope_id), notice: 'Documents saved' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -42,7 +45,8 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+        @scope_cycle = @document.scope_cycle
+        format.html { redirect_to manage_scope_cycles_path(:scope_id => @scope_cycle.scope_id), notice: 'Documents updated' }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit }

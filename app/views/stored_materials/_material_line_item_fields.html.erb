@@ -1,0 +1,30 @@
+
+                	<div class = 'nested-fields'>
+                          
+
+                  <div class="row" id='material-line-item-fields-row'>
+                          <div class="col-md-2 material-line-item-col-descr">
+                            <div><%= f.text_area :description, :cols => "1", class: "form-control" %></div>
+                          </div>  
+                          <div class="col-xs-1 material-line-item-col-input">
+                            <div><%= f.text_field :stored_at_cycle_start, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 material-line-item-col-input">
+                            <div><%= f.text_field :received_this_cycle, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 material-line-item-col-input">  
+                            <div><%= f.text_field :installed_this_cycle, class: "form-control" %></div>
+                          </div>
+                          <div class="col-md-1 material-line-item-col-input">  
+                            <div><%= f.text_field :stored_at_cycle_end, class: "form-control" %></div>
+                          </div>  
+                          <div class="col-md-1 material-line-item-col-input">  
+                            <div></div>
+                          </div>
+                          <div class="col-md-1 material-line-item-col-input">  
+                            <div><%= link_to_remove_association 'remove row', f %></div>
+                          </div>
+                  </div>  
+                  
+         		</div>
+      

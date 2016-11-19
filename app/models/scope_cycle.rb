@@ -6,5 +6,4 @@ class ScopeCycle < ActiveRecord::Base
 	belongs_to :billing_period
 	belongs_to :scope
 
-
 end

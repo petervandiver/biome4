@@ -72,9 +72,11 @@ class ScopesController < ApplicationController
   # PATCH/PUT /scopes/1
   # PATCH/PUT /scopes/1.json
   def update
-    @project = @scope.project
+    
     respond_to do |format|
+      @project = @scope.project
       if @scope.update(scope_params)
+        
         format.js
         format.html 
         format.json { render :show, status: :ok, location: @scope }

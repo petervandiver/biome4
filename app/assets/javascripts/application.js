@@ -15,7 +15,10 @@
 //= require cocoon
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require fe_scope_cycles 
 //= require_tree .
+
+
 
 
 

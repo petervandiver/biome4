@@ -65,44 +65,43 @@
   <strong>Amount due:</strong>
   <%= @scope_cycle.amount_due %>
 </p>
-
+<br />
+<br />
 
 <div>
-<% if @sov.blank? %>
-    <%= link_to 'Create Schedule of Values', new_sov_path(:scope_cycle_id => @scope_cycle.id) %>
-<% else %>
+      <% if @sov.blank? %>
+          <%= link_to 'Create Schedule of Values', new_sov_path(:scope_cycle_id => @scope_cycle.id) %>
+      <% else %>
 
-    <br />
 
-<a href='#' id="toggle-cycle-stored-material"> Materials Stored </a>
-<div style="display:none" id='cycle-stored-material'>    
-    	<%= render 'cycle_sov' %>
-<% end %>
-</div>
+          <h5 style='display:inline'>Schedule of Values</h5><a href='#' id="toggle-cycle-sov"> View </a> | <%= link_to 'Update', edit_sov_path(@sov, :scope_cycle_id => @scope_cycle.id) %>
+          <div id="cycle-sov-table" style="display:none">    
+          	<%= render 'cycle_sov' %>
+          </div>
+      <% end %>
 </div>
 
 <br />
 
 <div>
-<% if @stored_material.blank? %>
-    <%= link_to 'Create Materials Stored', new_stored_material_path(:scope_cycle_id => @scope_cycle.id) %>
-<% else %>
+      <% if @stored_material.blank? %>
+          <%= link_to 'Create Materials Stored', new_stored_material_path(:scope_cycle_id => @scope_cycle.id) %>
+      <% else %>
 
-<a href='#' id="toggle-cycle-stored-material"> Materials Stored </a>
-<div style="display:none" id='cycle-stored-material'>
-	<%= render 'cycle_stored_material' %>
-</div>
-
-<% end %>
+          <h5 style='display:inline'>Materials Stored</h5><a href='#' id="toggle-cycle-stored-material"> View </a> | <%= link_to 'Update', edit_stored_material_path(@stored_material, :scope_cycle_id => @scope_cycle.id) %>
+          <div style="display:none" id='cycle-stored-material'>
+          	<%= render 'cycle_stored_material' %>
+          </div>
+      <% end %>
 </div>
 <br />
 
 <div>
 <% if @scope_cycle.documents.blank? %>
-    <%= link_to 'Upload Documents', documents_path(:scope_cycle_id => @scope_cycle.id) %>
+    <%= link_to 'Upload Documents', new_document_path(:scope_cycle_id => @scope_cycle.id) %>
 <% else %>
 
-<a href='#' id="toggle-cycle-documents"> Documents </a>
+<h5 style='display:inline'>Stored Documents</h5><a href='#' id="toggle-cycle-documents"> View </a> | <%= link_to 'Upload', new_document_path(:scope_cycle_id => @scope_cycle.id) %>
 <div style="display:none" id='cycle-documents'>
 	<%= render 'cycle_documents' %>
 </div>
