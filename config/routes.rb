@@ -18,6 +18,7 @@ Rails.application.routes.draw do
  resources :scope_cycles do
       collection do
                       get 'manage', :to => 'scope_cycles#manage'
+                      get 'history', :to => 'scope_cycles#history'
       end
   end  
 

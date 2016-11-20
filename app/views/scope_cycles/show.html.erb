@@ -1,90 +1,73 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Billing period:</strong>
-  <%= @scope_cycle.billing_period_id %>
-</p>
-<%= link_to 'Edit Scope', edit_scope_cycle_path(@scope_cycle) %> 
-<p>
-  <strong>Scope:</strong>
-  <%= @scope_cycle.scope_id %>
-</p>
-
-<p>
-  <strong>Contributor:</strong>
-  <%= @scope_cycle.contributor_id %>
-</p>
-
-<p>
-  <strong>Owner:</strong>
-  <%= @scope_cycle.owner_id %>
-</p>
-
-<p>
-  <strong>Cycle start date:</strong>
-  <%= @scope_cycle.cycle_start_date %>
-</p>
-
-<p>
-  <strong>Cycle end date:</strong>
-  <%= @scope_cycle.cycle_end_date %>
-</p>
-
-<p>
-  <strong>Owner approved:</strong>
-  <%= @scope_cycle.owner_approved %>
-</p>
-
-<p>
-  <strong>Contributor approved:</strong>
-  <%= @scope_cycle.contributor_approved %>
-</p>
-
-<p>
-  <strong>Cycle suspended:</strong>
-  <%= @scope_cycle.cycle_suspended %>
-</p>
-
-<p>
-  <strong>Cycle cancelled:</strong>
-  <%= @scope_cycle.cycle_cancelled %>
-</p>
-
-<p>
-  <strong>Original contract amt:</strong>
-  <%= @scope_cycle.original_contract_amt %>
-</p>
-
-<p>
-  <strong>Completed to date total:</strong>
-  <%= @scope_cycle.completed_to_date_total %>
-</p>
-
-<p>
-  <strong>Stored materials total:</strong>
-  <%= @scope_cycle.stored_materials_total %>
-</p>
-
-<p>
-  <strong>Retainage:</strong>
-  <%= @scope_cycle.retainage %>
-</p>
-
-<p>
-  <strong>Less owner purchases:</strong>
-  <%= @scope_cycle.less_owner_purchases %>
-</p>
-
-<p>
-  <strong>Less previous pay request:</strong>
-  <%= @scope_cycle.less_previous_pay_request %>
-</p>
-
-<p>
-  <strong>Amount due:</strong>
-  <%= @scope_cycle.amount_due %>
-</p>
 
 
 
+<div id="scope-cycle-details">
+        <p>
+          <strong>Cycle start date:</strong>
+          <%= @scope_cycle.cycle_start_date %>
+        </p>
 
+        <p>
+          <strong>Cycle end date:</strong>
+          <%= @scope_cycle.cycle_end_date %>
+        </p>
+
+        <p>
+          <strong>Cycle suspended:</strong>
+          <%= @scope_cycle.cycle_suspended %>
+        </p>
+
+        <p>
+          <strong>Cycle cancelled:</strong>
+          <%= @scope_cycle.cycle_cancelled %>
+        </p>
+
+        <p>
+          <strong>Original contract amt:</strong>
+          <%= @scope_cycle.original_contract_amt %>
+        </p>
+
+        <p>
+          <strong>Completed to date total:</strong>
+          <%= @scope_cycle.completed_to_date_total %>
+        </p>
+
+        <p>
+          <strong>Stored materials total:</strong>
+          <%= @scope_cycle.stored_materials_total %>
+        </p>
+
+        <p>
+          <strong>Retainage:</strong>
+          <%= @scope_cycle.retainage %>
+        </p>
+
+        <p>
+          <strong>Less owner purchases:</strong>
+          <%= @scope_cycle.less_owner_purchases %>
+        </p>
+
+        <p>
+          <strong>Less previous pay request:</strong>
+          <%= @scope_cycle.less_previous_pay_request %>
+        </p>
+
+        <p>
+          <strong>Amount due:</strong>
+          <%= @scope_cycle.amount_due %>
+        </p>
+</div>
+
+<div id="cycle-sov-table" >    
+  <%= render 'cycle_sov' %>
+</div>
+<br />
+<div id='cycle-stored-material'>
+  <%= render 'cycle_stored_material' %>
+</div>
+<br /> 
+<div id='cycle-documents'>
+  <%= render 'cycle_documents' %>
+</div>

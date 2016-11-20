@@ -1,4 +1,6 @@
 
+<% if (scope.contributor.id != current_org_admin.organization.id) && (scope.owner.id != current_org_admin.organization.id) %>
+
   <tr>
   	<td><%= scope.name %></td>
     <td><%= scope.description %></td>
@@ -8,8 +10,46 @@
     <td><%= scope.sov_used %></td>
     <td><%= scope.stored_materials_used %></td>
     <td><%= scope.contributor.name %></td>
+    <td></td>
+    <td></td>
+   	<td></td>
+   	<td></td>
+  </tr>
+
+<% elsif  scope.contributor.id == current_org_admin.organization.id %>
+
+<tr>
+    <td><%= scope.name %></td>
+    <td><%= scope.description %></td>
+    <td><%= scope.visible_to_public %></td>
+    <td><%= scope.csi_division.code %></td>
+    <td><%= scope.billing_period.name %></td>
+    <td><%= scope.sov_used %></td>
+    <td><%= scope.stored_materials_used %></td>
+    <td><%= scope.contributor.name %></td>
     <td><%= scope.send_invite_to %></td>
     <td><%= link_to "Manage", manage_scope_cycles_path(:scope_id => scope.id) %></td>
-   	<td><%= link_to "Edit", edit_scope_path(scope, :project_id => @project.id), remote: true %></td>
-   	<td><%= link_to "Delete", scope, remote: true, method: :delete, id: scope.id %></td>
+    <td></td>
+    <td></td>
   </tr>
+
+<% else scope.owner.id == current_org_admin.organization.id %>
+
+  <tr>
+    <td><%= scope.name %></td>
+    <td><%= scope.description %></td>
+    <td><%= scope.visible_to_public %></td>
+    <td><%= scope.csi_division.code %></td>
+    <td><%= scope.billing_period.name %></td>
+    <td><%= scope.sov_used %></td>
+    <td><%= scope.stored_materials_used %></td>
+    <td><%= scope.contributor.name %></td>
+    <td><%= scope.send_invite_to %></td>
+    <td><%= link_to "Manage", manage_scope_cycles_path(:scope_id => scope.id) %></td>
+    <td><%= link_to "Edit", edit_scope_path(scope, :project_id => @project.id), remote: true %></td>
+    <td><%= link_to "Delete", scope, remote: true, method: :delete, id: scope.id %></td>
+  </tr>
+
+
+
+<% end %>

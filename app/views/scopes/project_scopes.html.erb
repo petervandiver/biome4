@@ -1,7 +1,7 @@
 
 <%= render 'projects/project' %>
 
-<%= link_to 'Create Scope', new_scope_path(:project_id => @project.id), remote: true, id: 'new-scope-link' %>
+
 
 <h4>Current scopes for this project</h4>
 <br />
@@ -28,5 +28,9 @@
   </tbody>
 </table>
 
-<br>
 
+<% if @project.organization.id == current_org_admin.organization.id %>
+
+<%= link_to 'Create Scope', new_scope_path(:project_id => @project.id), remote: true, id: 'new-scope-link' %>
+
+<% end %> 

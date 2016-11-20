@@ -14,23 +14,36 @@ class ScopeCyclesController < ApplicationController
     @contributor = Organization.where('id = ?', params[:contributor_id])
     @organizations = Organization.all
     @csi_divisions = CsiDivision.all
-    @cycles = ScopeCycle.where('scope_id = ?', params[:scope_id])
     @billing_periods = BillingPeriod.all
-    @scope_cycle = @cycles.order('created_at').last
-    @sov = Sov.where('scope_cycle_id = ?', @scope_cycle.id).first
-    @stored_material = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id).first   
-    @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)    
-    @jobs = Job.where('sov_id= ?', @sov.id)
-    @material_line_items = MaterialLineItem.where('stored_material_id= ?', @stored_material.id)
 
-
-
+    @cycles = ScopeCycle.where('scope_id = ?', params[:scope_id])
+      if @cycles.blank?
+          @cycles = 'no cycles exist'
+      else    
+          @scope_cycle = @cycles.order('cycle_end_date').last
+          @sov = Sov.where('scope_cycle_id = ?', @scope_cycle.id).first
+              @jobs = Job.where('sov_id= ?', @sov.id)
+          @stored_material = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id).first   
+              @material_line_items = MaterialLineItem.where('stored_material_id= ?', @stored_material.id)
+          @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)    
+      end    
   end
 
   # GET /scope_cycles/1
   # GET /scope_cycles/1.json
   def show
+    @sov = Sov.where('scope_cycle_id = ?', @scope_cycle.id).first
+        @jobs = Job.where('sov_id= ?', @sov.id)
+    @stored_material = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id).first   
+        @material_line_items = MaterialLineItem.where('stored_material_id= ?', @stored_material.id)
+    @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)    
   end
+
+  def history
+    @scope = Scope.find(params[:scope_id])
+    @scope_cycles = ScopeCycle.where('scope_id = ?', params[:scope_id])
+
+  end  
 
   # GET /scope_cycles/new
   def new

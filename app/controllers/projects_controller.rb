@@ -7,7 +7,9 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @owned_projects = Project.where('organization_id = ?', current_org_admin.organization.id)
-    @contributing_projects = Project.all
+    @contributing_scopes = Scope.where('contributor_id = ?', current_org_admin.organization.id)
+    @contributing_projects = Project.find(@contributing_scopes.map(&:project_id).uniq)
+
   end
 
   # GET /projects/1

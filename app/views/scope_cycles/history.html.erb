@@ -1,0 +1,84 @@
+   <div class="container">
+	  		
+       		<h4 style='display:inline'>All cycles for Scope: 
+
+   			<%= link_to "#{@scope.name}", manage_scope_cycles_path(:scope_id => @scope.id)  %></h4>
+   		<br /><br />
+
+   	<% @scope_cycles.each do |scope_cycle| %>
+
+    		<% if (scope_cycle.cycle_end_date > DateTime.now.to_date) %>	
+					
+					<div id="current-scope-cycle-<%=scope_cycle.id%>" class="well well-sm">
+								
+							<div id="scope-cycle-timeframe">
+								<strong>Timeframe: </strong><%= scope_cycle.cycle_start_date %> to <%= scope_cycle.cycle_end_date %>
+							</div>
+							
+							 <div id="scope-cycle-amount-paid">
+							 	<strong>Amount due: </strong><%= scope_cycle.amount_due %>
+							 </div>  
+							  
+							<% if scope_cycle.cycle_suspended == true %>
+							 
+							 		<div id="scope-cycle-suspended">
+							  			<strong>Cycle suspended</strong>
+							 		</div>
+
+							 <% end %>
+
+							<% if scope_cycle.cycle_cancelled == true %>
+							 
+							 		<div id="scope-cycle-suspended">
+							  			<strong>Cycle cancelled</strong>
+							 		</div>
+
+							 <% end %>
+
+							 <div id="past-scope-cycle-show-link">
+								<%= link_to "Manage", manage_scope_cycles_path(:scope_id => @scope.id) %>
+							</div>	
+	
+					</div>
+
+			<% else %>
+
+					<div id="past-scope-cycle-<%=scope_cycle.id%>" class="well well-sm">
+								
+							<div id="scope-cycle-timeframe">
+								<strong>Timeframe: </strong><%= scope_cycle.cycle_start_date %> to <%= scope_cycle.cycle_end_date %>
+							</div>
+							
+							 <div id="scope-cycle-amount-paid">
+							 	<strong>Amount paid: </strong><%= scope_cycle.amount_due %>
+							 </div>  
+							  
+							<% if scope_cycle.cycle_suspended == true %>
+							 
+							 		<div id="scope-cycle-suspended">
+							  			<strong>Cycle suspended</strong>
+							 		</div>
+
+							 <% end %>
+
+							<% if scope_cycle.cycle_cancelled == true %>
+							 
+							 		<div id="scope-cycle-suspended">
+							  			<strong>Cycle cancelled</strong>
+							 		</div>
+
+							 <% end %>
+
+							 <div id="past-scope-cycle-show-link">
+								<%= link_to "View", scope_cycle_path(scope_cycle) %>
+							</div>	
+	
+					</div>
+
+				<% end %>		
+
+					
+
+	<% end %>
+
+	</div>
