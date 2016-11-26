@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'carrierwave'
 
+gem 'remotipart'
+
 gem 'bootstrap-sass'
 
 gem 'devise'

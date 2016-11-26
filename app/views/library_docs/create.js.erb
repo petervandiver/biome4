@@ -1,0 +1,9 @@
+var oldForm = $('new-library-doc-form');
+<% if @library_doc.errors.any? %>
+  oldForm.html('<%= j( render 'form' ) %>');
+<% else %>
+  $('#new-library-doc-header').hide();
+  $('form').remove();
+  $('#library-doc-headers').after('<%= j(render @library_doc) %>');
+  $('#new-library-doc-link').show();
+<% end %>

@@ -24,6 +24,14 @@
   <p class="field">
     <%= f.text_area :description, placeholder: "description" %>
   </p>
+
+    <p class="field">
+    <%= f.text_field :contract_number, placeholder: "Contract number"%>
+  </p>
+    <p class="field">
+    <%= f.text_field :contract_amount, placeholder: "Contract $ amount"%>
+  </p>
+
   <p class="field">Visible to Public?
     <%= f.check_box :visible_to_public %>
   </p>

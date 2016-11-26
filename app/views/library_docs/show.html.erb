@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @library_doc.name %>
+</p>
+
+<p>
+  <strong>Doc:</strong>
+  <%= @library_doc.doc %>
+</p>
+
+<%= link_to 'Edit', edit_library_doc_path(@library_doc) %> |
+<%= link_to 'Back', library_docs_path %>

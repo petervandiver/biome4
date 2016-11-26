@@ -1,0 +1,25 @@
+<%= form_for @library_doc, authenticity_token: true, :remote => true  do |f| %>
+  <% if @library_doc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@library_doc.errors.count, "error") %> prohibited this library_doc from being saved:</h2>
+
+      <ul>
+      <% @library_doc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+   Select your file
+    <%= f.file_field :doc %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

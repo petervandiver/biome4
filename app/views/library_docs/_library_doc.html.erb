@@ -1,0 +1,15 @@
+<div class="row" style="border-bottom: .5px solid gray" id='library-doc-<%= library_doc.id %>'>
+        <div class="col-md-2 library-doc-col-grid">
+          <div class="library-doc-attr"><%= library_doc.name %></div>
+        </div>
+        <div class="col-md-2 library-doc-col-grid">
+          <div class="library-doc-attr"><%= library_doc.doc.file.filename  %></div>
+        </div>
+        <div class="col-md-2 library-doc-col-grid">
+          <div class="library-doc-attr"><%= link_to "download file", library_doc.doc.url %></div>
+        </div>
+        <div class="col-md-1 library-doc-col-grid">
+          <div class="library-doc-attr"><%= link_to 'delete', library_doc, remote: true, method: :delete, id: library_doc.id, data: { confirm: 'Are you sure?' }%></div>
+        </div>      
+</div>
+

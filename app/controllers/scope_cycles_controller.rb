@@ -21,11 +21,15 @@ class ScopeCyclesController < ApplicationController
           @cycles = 'no cycles exist'
       else    
           @scope_cycle = @cycles.order('cycle_end_date').last
-          @sov = Sov.where('scope_cycle_id = ?', @scope_cycle.id).first
-              @jobs = Job.where('sov_id= ?', @sov.id)
-          @stored_material = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id).first   
-              @material_line_items = MaterialLineItem.where('stored_material_id= ?', @stored_material.id)
-          @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)    
+            if @scope_cycle.cycle_end_date < DateTime.now.to_date
+                @scope_cycle = 'no active cycles'
+            else
+              @sov = Sov.where('scope_cycle_id = ?', @scope_cycle.id).first
+                  @jobs = Job.where('sov_id= ?', @sov.id)
+              @stored_material = StoredMaterial.where('scope_cycle_id = ?', @scope_cycle.id).first   
+                  @material_line_items = MaterialLineItem.where('stored_material_id= ?', @stored_material.id)
+              @documents = Document.where('scope_cycle_id = ?', @scope_cycle.id)    
+            end
       end    
   end
 

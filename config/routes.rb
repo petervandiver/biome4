@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
    
+  resources :library_docs
+  resources :document_libraries
   devise_for :org_admins, controllers: { registrations: "registrations" }
   
   resources :documents
   resources :stored_materials
   resources :sovs
-  resources :organizations
   resources :projects 
+  resources :organizations do
+      resources :library_docs
+  end  
+  
   
   resources :scopes do
       collection do

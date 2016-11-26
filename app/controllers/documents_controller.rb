@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  
+  before_action :authenticate_org_admin!
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   # GET /documents

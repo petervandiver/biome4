@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h4 style='display:inline'>Document Library</h4> <%= link_to 'Upload a document', new_organization_library_doc_path, remote: true, id: 'new-library-doc-link'  %>
+<br /><br />
+
+
+
+<div class="container">
+    
+  <div id="library-docs-table">
+
+    <div class="row"   id='library-doc-headers'> 
+        
+        <div class="col-md-2 library-doc-col-grid">
+          <div class="library-docs-head"><strong>name</strong></div>
+        </div>
+        <div class="col-md-2 library-doc-col-grid">
+          <div class="library-docs-head"><strong>filename</strong></div>
+        </div >
+        <div class="col-md-2 library-doc-col-grid">  
+          <div class="library-docs-head"></div>
+        </div>
+        <div class="col-md-1 library-doc-col-grid">  
+          <div class="library-docs-head"></div>
+        </div>
+    </div>
+
+    <%= render @library_docs %>
+     
+
+  </div>
+
+</div>

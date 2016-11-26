@@ -106,6 +106,6 @@ class ScopesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scope_params
-      params.require(:scope).permit(:name, :description, :visible_to_public, :csi_division_id, :billing_period_id, :sov_used, :stored_materials_used, :owner_id, :contributor_id, :send_invite_to, :project_id)
+      params.require(:scope).permit(:name, :description, :visible_to_public, :csi_division_id, :billing_period_id, :sov_used, :stored_materials_used, :owner_id, :contributor_id, :send_invite_to, :project_id, :contract_number, :contract_amount)
     end
 end

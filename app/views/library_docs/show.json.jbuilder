@@ -1,0 +1,1 @@
+json.partial! "library_docs/library_doc", library_doc: @library_doc
